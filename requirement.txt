@@ -4,4 +4,5 @@ South==0.8.1
 argparse==1.2.1
 beautifulsoup4==4.2.0
 django-debug-toolbar==0.9.4
+# mecab-python==0.996
 wsgiref==0.1.2
