@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 import re
+import json
 from django.test import TestCase
 from apps.scrape.management.commands import hatebu
+from apps.scrape.models import ScrapeQue
 
 class HatenabookmarkScrapeTest(TestCase):
+    
+    debug_dict = {
+            "title": u"テスト",
+            "users": 2000,
+            "link": "http://www.amazon.co.jp/exec/obidos/ASIN/4140814047/hatena-b-22/"}
 
     def test_get_link(self):
         u"""
@@ -55,10 +62,7 @@ class HatenabookmarkScrapeTest(TestCase):
         アフィリエイトのIDを入れ替えます
         """
         link = hatebu.HatenaBookmark(
-            debug={
-                "title": u"テスト",
-                "users": 2000,
-                "link": "http://www.amazon.co.jp/exec/obidos/ASIN/4140814047/hatena-b-22/"})
+            debug=self.debug_dict)
         link.link = link.fix_aff()
         self.assertTrue(
             re.search('bookable052e-22', link.link))
@@ -71,3 +75,51 @@ class HatenabookmarkScrapeTest(TestCase):
                 "link": "hoge"})
         self.assertFalse(
             re.search('Amazon.co.jp', link._fix_title(link.title)))
+
+    def test_generate_que(self):
+        link = hatebu.HatenaBookmark(debug=self.debug_dict)
+        link.make_que()
+        que = ScrapeQue.objects.get(url=link.fix_aff())
+        option = json.loads(que.text)
+        self.assertEqual(option['users'], 2000)
+
+    def test_generate_que_not_dublicate(self):
+        link = hatebu.HatenaBookmark(debug=self.debug_dict)
+        link.make_que()
+        link.make_que()
+        que = ScrapeQue.objects.get(url=link.fix_aff())
+        self.assertTrue(que)
+
+from apps.scrape.management.commands import run_que
+from apps.shelf.models import Book
+
+
+class GetAmazonDataTest(TestCase):
+
+    def setUp(self):
+        debug_dict = {
+            "title": u"テスト",
+            "users": 2000,
+            "link": "http://www.amazon.co.jp/exec/obidos/ASIN/4140814047/hatena-b-22/"}
+        link = hatebu.HatenaBookmark(debug=debug_dict)
+        link.make_que()
+        self.test_que = ScrapeQue.objects.filter(is_done=False)[0]
+
+    def test_get_amazonlink(self):
+        amazon = run_que.AmazonLink(self.test_que)
+        self.assertEqual(
+            amazon.title,
+            u'フリー~〈無料〉からお金を生みだす新戦略')
+
+    def test_model_save(self):
+        amazon = run_que.AmazonLink(self.test_que)
+        amazon.save()
+        book = Book.objects.all()[0]
+        self.assertEqual(amazon.title, book.title)
+        self.assertEqual(book.users, 2000)
+
+    def test_que_is_done(self):
+        amazon = run_que.AmazonLink(
+            self.test_que)
+        amazon.save()
+        self.assertTrue(self.test_que.is_done)

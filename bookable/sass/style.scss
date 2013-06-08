@@ -1,0 +1,77 @@
+@import "compass/reset/";
+
+@import "susy";
+$total-columns : 12;
+
+
+@mixin h2-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+@mixin h3-title {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 125%;
+}
+
+header {
+    h1 {
+        padding: 12px;
+        font-size: 125%;
+        background-color: #000000;
+        color: #FFFFFF;
+    }
+    margin-bottom: 12px;
+}
+
+.page {
+    @include container;
+    #content { 
+        h2 {
+            @include h2-title;
+        }
+
+        .books-container {
+            padding: 12px;
+            h3 {
+                @include h3-title;
+            }
+
+            ul {
+                list-style: none;
+                
+                .title {
+                    border-top: 3px solid #666666;
+                }
+
+                .users {
+                    font-weight: bold;
+                    color: #333333;
+                }
+                
+                .image {
+                    padding: 12px;
+                }
+
+            }
+
+        }
+
+        // タブ
+
+        .keyword { 
+            @include span-columns(4,12);
+        }
+    
+        .books-favorite {
+            @include span-columns(4,12);
+        }
+    
+        .books-newbee {
+            @include span-columns(4 omega,12);
+        }
+    }
+}

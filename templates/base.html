@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookable</title>
+    <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" />
+</head>
+<body>
+    <header>
+    <a href="/"><h1>BOOKABLE</h1></a>
+    </header>
+    <div class="page">
+        <div id="content">
+            {% block contents %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block contents %}
+    <div class="keyword">
+    <h2>Keyword</h2>
+    </div>
+    
+    <div class="books-favorite">
+    <h2>人気の本</h2> 
+    {% for book in favorite_books %}
+        {% include "books.html" %}
+    {% endfor %} 
+    </div>
+    
+    <div class="books-newbee">
+    <h2>注目の本</h2>
+    {% for book in newbee_books %}
+        {% include "books.html" %}
+    {% endfor %}
+    </div>
+{% endblock %}
