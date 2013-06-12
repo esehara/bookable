@@ -1,3 +1,7 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 17, ../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -61,89 +65,4 @@ a img {
 /* line 116, ../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
-}
-
-/* line 20, ../../sass/style.scss */
-header {
-  margin-bottom: 12px;
-}
-/* line 21, ../../sass/style.scss */
-header h1 {
-  padding: 12px;
-  font-size: 125%;
-  background-color: #000000;
-  color: #FFFFFF;
-}
-
-/* line 30, ../../sass/style.scss */
-.page {
-  *zoom: 1;
-  max-width: 59em;
-  _width: 59em;
-  padding-left: 1em;
-  padding-right: 1em;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* line 38, ../../../../../../.rvm/gems/ruby-1.9.3-p327/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */
-.page:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-/* line 33, ../../sass/style.scss */
-.page #content h2 {
-  text-align: center;
-  font-weight: bold;
-  font-size: 150%;
-}
-/* line 37, ../../sass/style.scss */
-.page #content .books-container {
-  padding: 12px;
-}
-/* line 39, ../../sass/style.scss */
-.page #content .books-container h3 {
-  margin-top: 6px;
-  margin-bottom: 6px;
-  font-weight: bold;
-  font-size: 75%;
-}
-/* line 43, ../../sass/style.scss */
-.page #content .books-container ul {
-  list-style: none;
-}
-/* line 46, ../../sass/style.scss */
-.page #content .books-container ul .title {
-  border-top: 3px solid #666666;
-}
-/* line 50, ../../sass/style.scss */
-.page #content .books-container ul .users {
-  font-weight: bold;
-  color: #333333;
-}
-/* line 55, ../../sass/style.scss */
-.page #content .books-container ul .image {
-  padding: 12px;
-}
-/* line 65, ../../sass/style.scss */
-.page #content .keyword {
-  width: 32.20339%;
-  float: left;
-  margin-right: 1.69492%;
-  display: inline;
-}
-/* line 69, ../../sass/style.scss */
-.page #content .books-favorite {
-  width: 32.20339%;
-  float: left;
-  margin-right: 1.69492%;
-  display: inline;
-}
-/* line 73, ../../sass/style.scss */
-.page #content .books-newbee {
-  width: 32.20339%;
-  float: right;
-  margin-right: 0;
-  *margin-left: -1em;
-  display: inline;
 }
