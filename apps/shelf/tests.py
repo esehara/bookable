@@ -1,16 +1,98 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
+# -*- coding: utf-8 -*-
+import MeCab
 from django.test import TestCase
+from apps.shelf.management.commands.mecab import (
+    MecabManager, MecabToken)
+from apps.shelf.models import Book
+
+class MecabTokenTest(TestCase):
+    def setUp(self):
+        mecab = MeCab.Tagger("mecabrc")
+
+        # initialize
+        mecab.parseToNode('initialize')
+
+        self._testnode = mecab.parseToNode(
+            'これはテストデータです')
+        self._generate_valid_token()
+
+    def _generate_valid_token(self):
+        node = self._testnode
+        while node:
+            if node.surface == "":
+                node = node.next
+                continue
+            self.valid_node_token = MecabToken(node)
+            break
+
+    def test_mecab_tokenize(self):
+        self.assertEqual(
+            self.valid_node_token.text, u'これ')
+
+    def test_mecab_get_wordtype(self):
+        self.assertEqual(
+            self.valid_node_token.type, u'名詞')
+        self.assertEqual(
+            self.valid_node_token.subtype, u'代名詞')
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+class MecabTest(TestCase):
+
+    def setUp(self):
+        self.debug = {
+            'title': u"これはテストデータです"}
+        self.mecabm = MecabManager(
+            debug=self.debug)
+
+    def test_mecab_initialize(self):
+        u"""
+        Mecabを使えるように設定します
         """
-        Tests that 1 + 1 always equals 2.
+        self.assertTrue(self.mecabm._node)
+
+    def test_mecab_tokenize(self):
+        u"""
+        Mecabのnodeからトークンを生成します
         """
-        self.assertEqual(1 + 1, 2)
+        self.assertTrue(
+            len(self.mecabm.tokens) > 0)
+        self.assertEqual(
+            self.mecabm.tokens[0].text, u'これ')
+
+    def assertNoun(self, token, text, is_noun):
+        self.assertEqual(token.text, text)
+        if is_noun:
+            self.assertTrue(token.is_noun())
+        else:
+            self.assertFalse(token.is_noun())
+
+    def test_mecab_noun_check(self):
+        u"""
+        名詞かどうかチェックします
+        """
+        tokens = self.mecabm.tokens
+        self.assertNoun(tokens[0], u'これ', False)
+        self.assertNoun(tokens[1], u'は', False)
+        self.assertNoun(tokens[2], u'テスト', True)
+
+    def generate_book(self):
+        return Book.objects.create(
+            title=u'これはテストです',
+            author=u'これは著者です',
+            price=1000,
+            url='http://',
+            image='http://',
+            detail=u'これはテスト詳細です',
+            users=300,
+            is_mecab=False,
+            via=u'はてなブックマーク')
+
+    def generate_mecab_model(self):
+        self.mecabm = MecabManager(
+            bookmodel=self.generate_book())
+
+    def test_mecab_book_tokenlize(self):
+        self.generate_mecab_model()
+        tokens = self.mecabm.tokens
+        self.assertNoun(tokens[0], u'これ', False)
+        self.assertNoun(tokens[2], u'テスト', True)

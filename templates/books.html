@@ -1,13 +1,10 @@
         {% if book.title %}
         <div class="books-container">
             <ul>
-                <li class="title">
-                    <h3>
-                        <a href="{{book.url}}">{{book.title}}</a>
-                    </h3>
-                </li>
                 <li class="image">
-                    <img src="{{book.image}}" alt="{{book.title}}" />
+                        <a href="{{book.url}}">
+                            <img src="{{book.image}}" alt="{{book.title}}" style="width:75%; height:75%;" />
+                        </a>
                 </li>
                 <li class="users">
                     {{book.users}}users

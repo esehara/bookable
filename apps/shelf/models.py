@@ -15,7 +15,7 @@ class Book(models.Model):
     image = models.URLField(u'書影へのリンク', null=True)
     detail = models.TextField(u'書誌詳細情報')
     users = models.IntegerField(u'はてなブックマークユーザー数', null=True)
-    is_mecamb = models.BooleanField(u'Mecab解析', default=False)
+    is_mecab = models.BooleanField(u'Mecab解析', default=False)
     text = models.TextField(u'紹介文章', null=True)
     via = models.CharField('引用元', max_length=255)
     created_at = models.DateTimeField(u'作成日時', auto_now_add=True)
