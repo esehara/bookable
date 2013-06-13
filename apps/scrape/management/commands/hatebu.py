@@ -43,7 +43,7 @@ class HatenaBookmark(object):
         return re.search('exec/obidos/ASIN/', self.link)
 
     def fix_aff(self):
-        return re.sub(r'hatena-b-22', 'bookable052e-22', self.link)
+        return re.sub(r'hatena-b-22/', '', self.link)
 
     def _fix_title(self, title):
         return re.sub(u'Amazon.co.jp： ', '', title)

@@ -5,4 +5,9 @@ urlpatterns = patterns(
     '',
     url('^$',
         'apps.shelf.views.index.index',
-        name='index'),)
+        name='index'),
+
+    url('^api/books/random$',
+        'apps.shelf.views.api.book_random_api',
+        name='get_random_books_api')
+)

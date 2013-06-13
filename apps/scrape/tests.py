@@ -64,8 +64,8 @@ class HatenabookmarkScrapeTest(TestCase):
         link = hatebu.HatenaBookmark(
             debug=self.debug_dict)
         link.link = link.fix_aff()
-        self.assertTrue(
-            re.search('bookable052e-22', link.link))
+        self.assertFalse(
+            re.search('hatebu-22', link.link))
 
     def test_title_fix(self):
         link = hatebu.HatenaBookmark(
