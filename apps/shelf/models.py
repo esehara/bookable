@@ -30,7 +30,7 @@ class Book(models.Model):
         return u"%s/%s/" % (self.url, settings.AMAZON_ID)
 
     @classmethod
-    def return_books(cls, get=3, min_users=0, max_users=10000):
+    def return_books(cls, get=5, min_users=0, max_users=10000):
         return cls.objects.filter(
             users__gt=min_users, users__lt=max_users).order_by('?')[:get]
 
@@ -38,8 +38,11 @@ class Book(models.Model):
     def return_page_dict(cls):
         d = {}
         d['favorite_books'] = Book.return_books(min_users=100)
-        d['normal_books'] = Book.return_books(min_users=50, max_users=100)
-        d['newbee_books'] = Book.return_books(max_users=50)
+        d['normal_books'] = Book.return_books(
+            min_users=50, max_users=100)
+        d['hot_books'] = Book.return_books(
+            max_users=50, min_users=10)
+        d['newbee_books'] = Book.return_books(max_users=10)
         return d
 
     @classmethod
@@ -48,10 +51,12 @@ class Book(models.Model):
         return u"""
 {"favorite_books": %s,
  "normal_books": %s,
+ "hot_books": %s,
  "newbee_books": %s}
         """ % (
             serialize('json', d['favorite_books']),
             serialize('json', d['normal_books']),
+            serialize('json', d['hot_books']),
             serialize('json', d['newbee_books']))
 
 class Keyword(models.Model):

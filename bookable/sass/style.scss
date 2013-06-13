@@ -2,7 +2,7 @@
 
 @import "susy";
 $total-columns : 12;
-
+$defult-columns: 3;
 
 @mixin h2-title {
     text-align: center;
@@ -62,16 +62,21 @@ header {
 
         // タブ
 
-        .keyword { 
-            @include span-columns(4,12);
+        .books-favorite { 
+            @include span-columns($defult-columns,12);
         }
     
-        .books-favorite {
-            @include span-columns(4,12);
+        .books-normal {
+            @include span-columns($defult-columns,12);
         }
-    
+        
+        .books-hot {
+            @include span-columns($defult-columns,12);
+        }
+        
+
         .books-newbee {
-            @include span-columns(4 omega,12);
+            @include span-columns($defult-columns omega,12);
         }
     }
 }

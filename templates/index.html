@@ -1,23 +1,31 @@
 {% extends "base.html" %}
 
 {% block contents %}
-    <div class="keyword">
+    <div class="books-favorite">
     <h2>- 100uer</h2>
     {% for book in favorite_books %}
         {% include "books.html" %}
     {% endfor %} 
     </div> 
-    <div class="books-favorite">
+    <div class="books-normal">
     <h2>100user - 50user </h2> 
     {% for book in normal_books %}
         {% include "books.html" %}
     {% endfor %}
     </div>
     
-    <div class="books-newbee">
-        <h2>50user -</h2>
-    {% for book in newbee_books %}
+    <div class="books-hot">
+        <h2>50user - 10user</h2>
+    {% for book in hot_books %}
         {% include "books.html" %}
     {% endfor %}
     </div>
+    
+    <div class="books-newbee">
+        <h2>10user - </h2>
+        {% for book in newbee_books %}
+            {% include "books.html" %}
+        {% endfor %}
+    </div>
+
 {% endblock %}

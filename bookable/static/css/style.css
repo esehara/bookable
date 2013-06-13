@@ -126,22 +126,29 @@ header h1 {
   padding: 12px;
 }
 /* line 65, ../../sass/style.scss */
-.page #content .keyword {
-  width: 32.20339%;
+.page #content .books-favorite {
+  width: 23.72881%;
   float: left;
   margin-right: 1.69492%;
   display: inline;
 }
 /* line 69, ../../sass/style.scss */
-.page #content .books-favorite {
-  width: 32.20339%;
+.page #content .books-normal {
+  width: 23.72881%;
   float: left;
   margin-right: 1.69492%;
   display: inline;
 }
 /* line 73, ../../sass/style.scss */
+.page #content .books-hot {
+  width: 23.72881%;
+  float: left;
+  margin-right: 1.69492%;
+  display: inline;
+}
+/* line 78, ../../sass/style.scss */
 .page #content .books-newbee {
-  width: 32.20339%;
+  width: 23.72881%;
   float: right;
   margin-right: 0;
   *margin-left: -1em;
