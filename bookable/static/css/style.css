@@ -98,55 +98,59 @@ header h1 {
   font-size: 150%;
 }
 /* line 37, ../../sass/style.scss */
+.page #main .content {
+  overflow: hidden;
+}
+/* line 41, ../../sass/style.scss */
 .page #main .books-container {
   padding: 12px;
 }
-/* line 39, ../../sass/style.scss */
+/* line 43, ../../sass/style.scss */
 .page #main .books-container h3 {
   margin-top: 6px;
   margin-bottom: 6px;
   font-weight: bold;
   font-size: 75%;
 }
-/* line 43, ../../sass/style.scss */
+/* line 47, ../../sass/style.scss */
 .page #main .books-container ul {
   list-style: none;
 }
-/* line 46, ../../sass/style.scss */
+/* line 50, ../../sass/style.scss */
 .page #main .books-container ul .title {
   border-top: 3px solid #666666;
 }
-/* line 50, ../../sass/style.scss */
+/* line 54, ../../sass/style.scss */
 .page #main .books-container ul .users {
   font-weight: bold;
   color: #333333;
 }
-/* line 55, ../../sass/style.scss */
+/* line 59, ../../sass/style.scss */
 .page #main .books-container ul .image {
   padding: 12px;
 }
-/* line 65, ../../sass/style.scss */
+/* line 69, ../../sass/style.scss */
 .page #main .books-favorite {
   width: 23.72881%;
   float: left;
   margin-right: 1.69492%;
   display: inline;
 }
-/* line 69, ../../sass/style.scss */
+/* line 73, ../../sass/style.scss */
 .page #main .books-normal {
   width: 23.72881%;
   float: left;
   margin-right: 1.69492%;
   display: inline;
 }
-/* line 73, ../../sass/style.scss */
+/* line 77, ../../sass/style.scss */
 .page #main .books-hot {
   width: 23.72881%;
   float: left;
   margin-right: 1.69492%;
   display: inline;
 }
-/* line 78, ../../sass/style.scss */
+/* line 82, ../../sass/style.scss */
 .page #main .books-newbee {
   width: 23.72881%;
   float: right;

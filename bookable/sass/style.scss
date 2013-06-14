@@ -34,6 +34,10 @@ header {
             @include h2-title;
         }
 
+        .content {
+            overflow: hidden;
+        }
+
         .books-container {
             padding: 12px;
             h3 {
