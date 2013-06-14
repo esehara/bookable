@@ -43,7 +43,7 @@ class HatenaBookmark(object):
         return re.search('exec/obidos/ASIN/', self.link)
 
     def fix_aff(self):
-        return re.sub(r'hatena-b-22/', '', self.link)
+        return re.sub(r'hatena-b-22/ref=nosim', '', self.link)
 
     def _fix_title(self, title):
         return re.sub(u'Amazon.co.jp： ', '', title)
@@ -56,13 +56,13 @@ class HatenaBookmark(object):
             que = ScrapeQue.objects.get(
                 url=self.fix_aff())
         except ScrapeQue.DoesNotExist:
-            print u"Create Que ... %s" % (self.title)
             que = ScrapeQue.objects.create(
                 title=self.title,
                 url=self.fix_aff(),
                 image=self.image,
                 text=json.dumps(self._make_jsonable_dict()),
                 via="HatenaBookMark")
+            print u"No.%d: %s" % (que.pk, que.title)
         return que
 
 
