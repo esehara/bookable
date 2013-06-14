@@ -29,7 +29,7 @@ header {
 
 .page {
     @include container;
-    #content { 
+    #main { 
         h2 {
             @include h2-title;
         }
