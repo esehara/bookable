@@ -27,7 +27,7 @@ class Book(models.Model):
         return u"%s %s" % (self.title, self.author)
 
     def affilize(self):
-        return u"%s/%s/" % (self.url, settings.AMAZON_ID)
+        return u"%s%s/" % (self.url, settings.AMAZON_ID)
 
     @classmethod
     def return_books(cls, get=5, min_users=0, max_users=10000):
