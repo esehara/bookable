@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 
+{% block extheader %}
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.autopager-1.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $.autopager({
+            link: '#nextlink',
+            appendTo: '.contentwrapper'
+        });
+    });
+</script>
+{% endblock %}
+
 {% block contents %}
-    <div class="books-favorite">
+<div class="contentwrapper">
+    <div class="content">
+    <div class="books-favorite">    
     <h2>- 100uer</h2>
     {% for book in favorite_books %}
         {% include "books.html" %}
@@ -27,5 +41,7 @@
             {% include "books.html" %}
         {% endfor %}
     </div>
-
+    </div>
+</div>
+<a href="/" ref="next" id="nextlink">Reload</a>
 {% endblock %}
