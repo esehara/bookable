@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
+    'gunicorn',
     'django_jenkins',
     'django.contrib.admin',
 ) + PROJECT_APPS
