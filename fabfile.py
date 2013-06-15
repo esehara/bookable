@@ -6,7 +6,7 @@ from fabric.api import *
 
 
 @hosts(os.environ['BOOKABLE_HOST'])
-def posthook():
+def deploy():
     with cd('~/django/bookable'):
         run('git pull origin master')
         run('source ~/env/bookable/bin/activate &&'
