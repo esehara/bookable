@@ -1,20 +1,46 @@
 @import "compass/reset/";
 
 @import "susy";
-$total-columns : 12;
-$defult-columns: 3;
+$total-columns : 16;
+$defult-columns: 4;
+
+// background-color
+
+$background-body: #68462B;
+
+$column-cyan: #39F;
+$title-cyan: #609;
+
+$column-yellow: #FF3;
+$title-yellow: #F90;
+
+$column-mazenda: #F6A;
+$title-mazenda: #F02;
+
+$column-gray: #DDD;
+$title-gray: #666;
+
+@mixin wrapper-h2 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
 
 @mixin h2-title {
+    padding-left: 10px;
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
-    font-weight: bold;
-    font-size: 150%;
+    font-size: 160%;
+    width: 100%;
+    height: 2em;
+    color: white;
 }
 
 @mixin h3-title {
     margin-top: 6px;
     margin-bottom: 6px;
     font-weight: bold;
-    font-size: 75%;
+    font-size: 95%;
 }
 
 header {
@@ -24,12 +50,19 @@ header {
         background-color: #000000;
         color: #FFFFFF;
     }
-    margin-bottom: 12px;
+}
+
+body {
+    background-color: $background-body;
 }
 
 .page {
     @include container;
-    #main { 
+    #main {
+        .h2-wrapper {
+            @include wrapper-h2;
+        }
+
         h2 {
             @include h2-title;
         }
@@ -53,34 +86,70 @@ header {
 
                 .users {
                     font-weight: bold;
-                    color: #333333;
+                    text-align: right;
+                    padding-top: 0.5em;
+                    padding-bottom: 0.5em;
+                    padding-right: 6px;
+                    font-size: 145%;
+                    color: white;
+                    border-bottom: 1px dashed white;
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+
+                    span.user-number {
+                        font-size: 175%;
+                    }
+
                 }
                 
                 .image {
-                    padding: 12px;
+                    text-align: center;
                 }
 
             }
 
         }
 
-        // タブ
+        @mixin column-border-line {
+            /* border-left: 2px dashed white;
+               border-right: 2px dashed white; */
+        }
 
         .books-favorite { 
-            @include span-columns($defult-columns,12);
+            @include span-columns($defult-columns, $total-columns);
+            @include column-border-line;
+            margin: 0px;
+            background-color: $column-cyan;
+            .wrapper-h2 { background-color: $title-cyan; }
         }
     
         .books-normal {
-            @include span-columns($defult-columns,12);
+            @include span-columns($defult-columns, $total-columns);
+            @include column-border-line;
+            margin: 0px;
+            background-color: $column-yellow;
+            .wrapper-h2 { background-color: $title-yellow; }
         }
+
         
         .books-hot {
-            @include span-columns($defult-columns,12);
+            @include span-columns($defult-columns, $total-columns);
+            @include column-border-line;
+            margin: 0px;
+            background-color: $column-mazenda;
+            .wrapper-h2 { background-color: $title-mazenda; }
+
         }
         
 
         .books-newbee {
-            @include span-columns($defult-columns omega,12);
+            @include span-columns($defult-columns, $total-columns);
+            @include column-border-line;
+            margin: 0px;
+            background-color: $column-gray;
+            .wrapper-h2 { background-color: $title-gray; }
         }
     }
 }
