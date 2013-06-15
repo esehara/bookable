@@ -63,17 +63,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 46, ../../sass/style.scss */
+/* line 47, ../../sass/style.scss */
 header {
   padding-top: 12px;
   padding-bottom: 12px;
   background-color: #000000;
 }
-/* line 50, ../../sass/style.scss */
+/* line 51, ../../sass/style.scss */
 header a {
   text-decoration: none;
 }
-/* line 54, ../../sass/style.scss */
+/* line 55, ../../sass/style.scss */
 header h1 {
   padding: 12px;
   font-size: 125%;
@@ -81,12 +81,12 @@ header h1 {
   display: inline;
 }
 
-/* line 62, ../../sass/style.scss */
+/* line 63, ../../sass/style.scss */
 body {
   background-image: url("/static/img/background-paper.png");
 }
 
-/* line 66, ../../sass/style.scss */
+/* line 67, ../../sass/style.scss */
 .page {
   *zoom: 1;
   max-width: 79em;
@@ -102,16 +102,16 @@ body {
   display: table;
   clear: both;
 }
-/* line 68, ../../sass/style.scss */
+/* line 69, ../../sass/style.scss */
 .page #main {
   margin-left: 2em;
 }
-/* line 71, ../../sass/style.scss */
+/* line 72, ../../sass/style.scss */
 .page #main .h2-wrapper {
   padding-top: 12px;
   padding-bottom: 12px;
 }
-/* line 74, ../../sass/style.scss */
+/* line 75, ../../sass/style.scss */
 .page #main h2 {
   padding-left: 10px;
   display: table-cell;
@@ -122,30 +122,30 @@ body {
   height: 2em;
   color: white;
 }
-/* line 78, ../../sass/style.scss */
+/* line 79, ../../sass/style.scss */
 .page #main .content {
   overflow: hidden;
 }
-/* line 85, ../../sass/style.scss */
+/* line 86, ../../sass/style.scss */
 .page #main .books-container {
   padding: 12px;
 }
-/* line 87, ../../sass/style.scss */
+/* line 88, ../../sass/style.scss */
 .page #main .books-container h3 {
   margin-top: 6px;
   margin-bottom: 6px;
   font-weight: bold;
   font-size: 95%;
 }
-/* line 91, ../../sass/style.scss */
+/* line 92, ../../sass/style.scss */
 .page #main .books-container ul {
   list-style: none;
 }
-/* line 94, ../../sass/style.scss */
+/* line 95, ../../sass/style.scss */
 .page #main .books-container ul .title {
   border-top: 3px solid #666666;
 }
-/* line 98, ../../sass/style.scss */
+/* line 99, ../../sass/style.scss */
 .page #main .books-container ul .users {
   font-weight: bold;
   text-align: right;
@@ -156,20 +156,20 @@ body {
   color: white;
   border-bottom: 1px dashed white;
 }
-/* line 107, ../../sass/style.scss */
+/* line 108, ../../sass/style.scss */
 .page #main .books-container ul .users a {
   text-decoration: none;
   color: white;
 }
-/* line 112, ../../sass/style.scss */
+/* line 113, ../../sass/style.scss */
 .page #main .books-container ul .users span.user-number {
   font-size: 175%;
 }
-/* line 118, ../../sass/style.scss */
+/* line 119, ../../sass/style.scss */
 .page #main .books-container ul .image {
   text-align: center;
 }
-/* line 131, ../../sass/style.scss */
+/* line 132, ../../sass/style.scss */
 .page #main .books-favorite {
   width: 24.05063%;
   float: left;
@@ -179,11 +179,10 @@ body {
      border-right: 2px dashed white; */
   margin: 0px;
   background-color: #3399ff;
-  border-left: 1px solid #110022;
 }
 /* line 137, ../../sass/style.scss */
 .page #main .books-favorite .wrapper-h2 {
-  background-color: #660099;
+  background-color: #6699ff;
 }
 /* line 140, ../../sass/style.scss */
 .page #main .books-normal {
@@ -229,4 +228,26 @@ body {
 /* line 164, ../../sass/style.scss */
 .page #main .books-newbee .wrapper-h2 {
   background-color: #666666;
+}
+
+/* line 169, ../../sass/style.scss */
+#reloadbutton {
+  position: fixed;
+  font-size: 32px;
+  padding: 12px;
+  background-color: #666;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  border-radius: 10px;
+  bottom: 10px;
+  right: 10px;
+}
+/* line 178, ../../sass/style.scss */
+#reloadbutton a {
+  text-decoration: none;
+  color: #CCC;
 }

@@ -1,4 +1,6 @@
 @import "compass/reset/";
+@import "compass/css3/opacity";
+@import "compass/css3/border-radius";
 @import "susy";
 $total-columns : 16;
 $defult-columns: 4;
@@ -8,8 +10,7 @@ $defult-columns: 4;
 $background-body: #68462B;
 
 $column-cyan: #39F;
-$title-cyan: #609;
-$border-cyan: #102;
+$title-cyan: #69F;
 
 $column-yellow: #FF3;
 $title-yellow: #F90;
@@ -133,7 +134,6 @@ body {
            @include column-border-line;
             margin: 0px;
             background-color: $column-cyan;
-            border-left: 1px solid $border-cyan;
             .wrapper-h2 { background-color: $title-cyan; }
         }
     
@@ -163,5 +163,20 @@ body {
             background-color: $column-gray;
             .wrapper-h2 { background-color: $title-gray; }
         }
+    }
+}
+
+#reloadbutton {
+    position: fixed;
+    font-size: 32px;
+    padding: 12px;
+    background-color: #666;
+    @include opacity(0.7);
+    @include border-radius(10px);
+    bottom: 10px;
+    right: 10px;
+    a { 
+        text-decoration:none;
+        color:#CCC;
     }
 }
