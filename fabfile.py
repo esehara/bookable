@@ -17,3 +17,4 @@ def deploy():
             'pip install -r requirement.txt &&'
             'python manage.py migrate',
             shell=False)
+        sudo('supervisorctl reload')
