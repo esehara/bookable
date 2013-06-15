@@ -12,4 +12,4 @@ logilab-astng==0.24.3
 logilab-common==0.59.1
 #mecab-python==0.996
 pylint==0.28.0
-wsgiref==0.1.2
+#wsgiref==0.1.2
