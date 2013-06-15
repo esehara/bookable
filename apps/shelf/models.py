@@ -43,11 +43,11 @@ class Book(models.Model):
     @classmethod
     def return_page_dict(cls):
         d = {}
-        d['favorite_books'] = Book.return_books(min_users=100)
+        d['favorite_books'] = Book.return_books(min_users=50)
         d['normal_books'] = Book.return_books(
-            min_users=50, max_users=100)
+            min_users=25, max_users=50)
         d['hot_books'] = Book.return_books(
-            max_users=50, min_users=10)
+            min_users=10, max_users=25)
         d['newbee_books'] = Book.return_books(max_users=10)
         return d
 
