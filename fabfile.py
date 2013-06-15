@@ -5,7 +5,10 @@ import os
 from fabric.api import *
 
 
-@hosts(os.environ['BOOKABLE_HOST'])
+@hosts(
+    '%s:%s' %
+    (os.environ['BOOKABLE_HOST'],
+    os.environ['BOOKABLE_PORT']))
 def deploy():
     with cd('~/django/bookable'):
         run('git pull origin master')
