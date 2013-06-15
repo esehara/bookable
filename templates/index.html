@@ -16,27 +16,35 @@
 <div class="contentwrapper">
     <div class="content">
     <div class="books-favorite">    
-    <h2>- 100uer</h2>
+        <div class="wrapper-h2">
+            <h2>-100user</h2>
+        </div>
     {% for book in favorite_books %}
         {% include "books.html" %}
     {% endfor %} 
     </div> 
     <div class="books-normal">
-    <h2>100user - 50user </h2> 
+        <div class="wrapper-h2">
+            <h2>100user - 50user </h2>
+        </div>
     {% for book in normal_books %}
         {% include "books.html" %}
     {% endfor %}
     </div>
     
     <div class="books-hot">
-        <h2>50user - 10user</h2>
+        <div class="wrapper-h2">
+            <h2>50user - 10user</h2>
+        </div>
     {% for book in hot_books %}
         {% include "books.html" %}
     {% endfor %}
     </div>
     
     <div class="books-newbee">
-        <h2>10user - </h2>
+        <div class="wrapper-h2">
+            <h2>10user - </h2>
+        </div>
         {% for book in newbee_books %}
             {% include "books.html" %}
         {% endfor %}
