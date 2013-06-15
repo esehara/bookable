@@ -29,6 +29,12 @@ class Book(models.Model):
     def affilize(self):
         return u"%s%s/" % (self.url, settings.AMAZON_ID)
 
+    def link_to_hatenabookmark(self):
+        link = self.url
+        link = link.replace('http://', 'http://b.hatena.ne.jp/entry/')
+        link = link.replace('/exec/obidos/ASIN/', '/gp/product/')
+        return link
+
     @classmethod
     def return_books(cls, get=5, min_users=0, max_users=10000):
         return cls.objects.filter(

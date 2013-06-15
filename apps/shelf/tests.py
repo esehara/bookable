@@ -96,3 +96,23 @@ class MecabTest(TestCase):
         tokens = self.mecabm.tokens
         self.assertNoun(tokens[0], u'これ', False)
         self.assertNoun(tokens[2], u'テスト', True)
+
+
+class BookModelTest(TestCase):
+
+    def setUp(self):
+        self.book = Book.objects.create(
+            title=u'これはテストです',
+            author=u'これは著者です',
+            price=1000,
+            url=u'http://www.amazon.co.jp/exec/obidos/ASIN/4140814047/',
+            image='http://',
+            detail=u'これはテスト詳細です',
+            users=300,
+            is_mecab=False,
+            via=u'はてなブックマーク')
+
+    def test_url_to_bookmark(self):
+        self.assertEqual(
+            u'http://b.hatena.ne.jp/entry/www.amazon.co.jp/gp/product/4140814047/',
+            self.book.link_to_hatenabookmark())
