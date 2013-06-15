@@ -1,5 +1,4 @@
 @import "compass/reset/";
-
 @import "susy";
 $total-columns : 16;
 $defult-columns: 4;
@@ -10,6 +9,7 @@ $background-body: #68462B;
 
 $column-cyan: #39F;
 $title-cyan: #609;
+$border-cyan: #102;
 
 $column-yellow: #FF3;
 $title-yellow: #F90;
@@ -60,22 +60,26 @@ header {
 }
 
 body {
-    background-color: $background-body;
+    background-image: url('/static/img/background-paper.png');
 }
 
 .page {
     @include container;
     #main {
+        margin-left: 2em;
+
         .h2-wrapper {
             @include wrapper-h2;
         }
-
         h2 {
             @include h2-title;
         }
 
         .content {
             overflow: hidden;
+        }
+
+        .contentwrapper {
         }
 
         .books-container {
@@ -125,10 +129,11 @@ body {
         }
 
         .books-favorite { 
-            @include span-columns($defult-columns, $total-columns);
-            @include column-border-line;
+           @include span-columns($defult-columns, $total-columns);
+           @include column-border-line;
             margin: 0px;
             background-color: $column-cyan;
+            border-left: 1px solid $border-cyan;
             .wrapper-h2 { background-color: $title-cyan; }
         }
     
