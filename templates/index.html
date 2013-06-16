@@ -10,6 +10,7 @@
             });
         var focus_status = 0;
         var previous_status = 0;
+        var is_animate = false;
         var slideFunction = function() {
             var target_position;
             var elem = $('.books-favorite li.image').get(focus_status);
@@ -17,19 +18,46 @@
                 focus_status = previous_status;
             } else {
                 target_position = $(elem).offset();
-                $('html, body').animate({scrollTop: target_position.top - 24}, 'fast');
+                is_animate = true;
+                $('html, body').animate({scrollTop: target_position.top - 24}, 'fast', function() {
+                   is_animate = false; 
+                });
             }
         };
+        var check_position = function() {
+            var position = $('body').scrollTop();
+            if (!is_animate) {
+            $('.books-favorite .books-container').each(function(index, dom) {
+                var elem_top = $(dom).offset().top;
+                var elem_bottom = $(dom).height() + elem_top;
+
+                if (position > elem_top && elem_bottom > position) {
+                        focus_status = index + 1;
+                    }
+                });
+            }
+        }
+
+        window.setInterval(check_position, 1000);
 
         $(document).keypress(function(keyevent) {
             var is_button_push = false;
+            var key_check = function(_keyevent, number) {
+                return _keyevent.keyCode === number || _keyevent.charCode === number;
+            }
+
+            console.log(keyevent.keyCode);
             previous_status = focus_status; 
-            if (keyevent.keyCode === 106 || keyevent.charCode === 106) {
+            if (key_check(keyevent, 106)) {
                 focus_status ++;
                 is_button_push = true;
-            } else if (keyevent.keyCode === 107 || keyevent.charCode === 107) {
+            } else if (key_check(keyevent, 107)) {
                 focus_status --;
                 is_button_push = true;
+            }
+
+            if (key_check(keyevent, 32)) {
+                check_position();
             }
 
             if (focus_status < 0) {
