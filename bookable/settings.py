@@ -110,7 +110,8 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.logger.LoggingPanel',
 )
 
-INTERNAL_IPS = ('127.0.0.1',)
+if DEBUG:
+    INTERNAL_IPS = ('127.0.0.1',)
 
 ROOT_URLCONF = 'bookable.urls'
 
