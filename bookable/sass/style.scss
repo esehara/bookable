@@ -98,6 +98,8 @@ body {
         h2 {
             @include h2-title;
         }
+        .content {
+        }
 
         .content {
             overflow: hidden;
@@ -152,14 +154,17 @@ body {
                border-right: 2px dashed white; */
         }
 
+
         .books-favorite { 
-           @include span-columns($defult-columns, $total-columns);
-           @include column-border-line;
+            @include span-columns($defult-columns, $total-columns);
+            @include column-border-line;
             margin: 0px;
             background-color: $column-cyan;
-            .wrapper-h2 { background-color: $title-cyan; }
+            .wrapper-h2 { 
+                background-color: $title-cyan;
+            }
         }
-    
+        
         .books-normal {
             @include span-columns($defult-columns, $total-columns);
             @include column-border-line;
@@ -184,7 +189,34 @@ body {
             @include column-border-line;
             margin: 0px;
             background-color: $column-gray;
-            .wrapper-h2 { background-color: $title-gray; }
+            .wrapper-h2 { 
+                background-color: $title-gray;
+            }
+        }
+
+        .content:first-child {
+        
+            @mixin top-left-radius {
+                @include border-corner-radius("top", "left", 25px 10px);
+                .wrapper-h2:first-child {
+                    @include border-corner-radius("top", "left", 25px 10px);
+                }
+            }
+
+            .books-favorite:first-child {
+                @include top-left-radius;
+            }
+        
+            @mixin top-right-radius {
+                @include border-corner-radius("top", "right", 25px 10px);
+                .wrapper-h2:first-child {
+                    @include border-corner-radius("top", "right", 25px 10px);
+                }
+            }
+
+            .books-newbee:nth-child(4) {
+                @include top-right-radius;
+            }
         }
     }
 }

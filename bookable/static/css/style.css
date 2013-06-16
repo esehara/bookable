@@ -139,30 +139,30 @@ body {
   height: 2em;
   color: white;
 }
-/* line 102, ../../sass/style.scss */
+/* line 104, ../../sass/style.scss */
 .page #main .content {
   overflow: hidden;
 }
-/* line 109, ../../sass/style.scss */
+/* line 111, ../../sass/style.scss */
 .page #main .books-container {
   padding: 12px;
 }
-/* line 111, ../../sass/style.scss */
+/* line 113, ../../sass/style.scss */
 .page #main .books-container h3 {
   margin-top: 6px;
   margin-bottom: 6px;
   font-weight: bold;
   font-size: 95%;
 }
-/* line 115, ../../sass/style.scss */
+/* line 117, ../../sass/style.scss */
 .page #main .books-container ul {
   list-style: none;
 }
-/* line 118, ../../sass/style.scss */
+/* line 120, ../../sass/style.scss */
 .page #main .books-container ul .title {
   border-top: 3px solid #666666;
 }
-/* line 122, ../../sass/style.scss */
+/* line 124, ../../sass/style.scss */
 .page #main .books-container ul .users {
   font-weight: bold;
   text-align: right;
@@ -173,20 +173,20 @@ body {
   color: white;
   border-bottom: 1px dashed white;
 }
-/* line 131, ../../sass/style.scss */
+/* line 133, ../../sass/style.scss */
 .page #main .books-container ul .users a {
   text-decoration: none;
   color: white;
 }
-/* line 136, ../../sass/style.scss */
+/* line 138, ../../sass/style.scss */
 .page #main .books-container ul .users span.user-number {
   font-size: 175%;
 }
-/* line 142, ../../sass/style.scss */
+/* line 144, ../../sass/style.scss */
 .page #main .books-container ul .image {
   text-align: center;
 }
-/* line 155, ../../sass/style.scss */
+/* line 158, ../../sass/style.scss */
 .page #main .books-favorite {
   width: 24.05063%;
   float: left;
@@ -197,11 +197,11 @@ body {
   margin: 0px;
   background-color: #00adef;
 }
-/* line 160, ../../sass/style.scss */
+/* line 163, ../../sass/style.scss */
 .page #main .books-favorite .wrapper-h2 {
   background-color: #005cf0;
 }
-/* line 163, ../../sass/style.scss */
+/* line 168, ../../sass/style.scss */
 .page #main .books-normal {
   width: 24.05063%;
   float: left;
@@ -212,11 +212,11 @@ body {
   margin: 0px;
   background-color: #ffcc00;
 }
-/* line 168, ../../sass/style.scss */
+/* line 173, ../../sass/style.scss */
 .page #main .books-normal .wrapper-h2 {
   background-color: #ff8a00;
 }
-/* line 172, ../../sass/style.scss */
+/* line 177, ../../sass/style.scss */
 .page #main .books-hot {
   width: 24.05063%;
   float: left;
@@ -227,11 +227,11 @@ body {
   margin: 0px;
   background-color: #eb008b;
 }
-/* line 177, ../../sass/style.scss */
+/* line 182, ../../sass/style.scss */
 .page #main .books-hot .wrapper-h2 {
   background-color: #be0036;
 }
-/* line 182, ../../sass/style.scss */
+/* line 187, ../../sass/style.scss */
 .page #main .books-newbee {
   width: 24.05063%;
   float: left;
@@ -242,12 +242,36 @@ body {
   margin: 0px;
   background-color: #b9b9b9;
 }
-/* line 187, ../../sass/style.scss */
+/* line 192, ../../sass/style.scss */
 .page #main .books-newbee .wrapper-h2 {
   background-color: #666666;
 }
+/* line 206, ../../sass/style.scss */
+.page #main .content:first-child .books-favorite:first-child {
+  -moz-border-radius-topleft: 25px 10px;
+  -webkit-border-top-left-radius: 25px 10px;
+  border-top-left-radius: 25px 10px;
+}
+/* line 201, ../../sass/style.scss */
+.page #main .content:first-child .books-favorite:first-child .wrapper-h2:first-child {
+  -moz-border-radius-topleft: 25px 10px;
+  -webkit-border-top-left-radius: 25px 10px;
+  border-top-left-radius: 25px 10px;
+}
+/* line 217, ../../sass/style.scss */
+.page #main .content:first-child .books-newbee:nth-child(4) {
+  -moz-border-radius-topright: 25px 10px;
+  -webkit-border-top-right-radius: 25px 10px;
+  border-top-right-radius: 25px 10px;
+}
+/* line 212, ../../sass/style.scss */
+.page #main .content:first-child .books-newbee:nth-child(4) .wrapper-h2:first-child {
+  -moz-border-radius-topright: 25px 10px;
+  -webkit-border-top-right-radius: 25px 10px;
+  border-top-right-radius: 25px 10px;
+}
 
-/* line 192, ../../sass/style.scss */
+/* line 224, ../../sass/style.scss */
 #reloadbutton {
   position: fixed;
   font-size: 32px;
@@ -263,7 +287,7 @@ body {
   bottom: 10px;
   right: 10px;
 }
-/* line 201, ../../sass/style.scss */
+/* line 233, ../../sass/style.scss */
 #reloadbutton a {
   text-decoration: none;
   color: #CCC;
