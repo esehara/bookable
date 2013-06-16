@@ -2,4 +2,4 @@
 source $HOME/env/bookable.sh
 source $BOOKABLE_VIRTUALENV_PATH
 cd $BOOKABLE_ROOT
-gunicorn bookable.wsgi:application -b 0.0.0.0:8088
+gunicorn bookable.wsgi:application -c gunicorn.ini
