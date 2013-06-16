@@ -17,7 +17,7 @@
                 focus_status = previous_status;
             } else {
                 target_position = $(elem).offset();
-                $('html, body').animate({scrollTop: target_position.top}, 'fast');
+                $('html, body').animate({scrollTop: target_position.top - 24}, 'fast');
             }
         };
 
