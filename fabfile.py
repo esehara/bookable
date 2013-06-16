@@ -20,6 +20,9 @@ def deploy():
             shell=False)
     supervisorctl()
 
+
 def supervisorctl():
-    for process in ['reread', 'update', 'startbookable']:
-        sudo('supervisorctl %s' % process)
+    for process in [
+            'reread', 'update',
+            'restart bookable']:
+        run('supervisorctl %s' % process)
