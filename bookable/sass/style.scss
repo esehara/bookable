@@ -89,7 +89,7 @@ body {
     @include container;
     #main {
         margin-left: 2em;
-
+        margin-top: 2em;
         .h2-wrapper {
             @include wrapper-h2;
         }
