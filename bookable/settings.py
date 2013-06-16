@@ -1,7 +1,7 @@
 # Django settings for bookable project.
 import os
 
-DEBUG = True
+DEBUG = os.environ.get('BOOKABLE_DEBUG', False) == "True"
 TEMPLATE_DEBUG = DEBUG
 AMAZON_ID = 'bookable052e-22'
 ADMINS = (
