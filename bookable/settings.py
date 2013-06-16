@@ -113,7 +113,9 @@ DEBUG_TOOLBAR_PANELS = (
 INTERNAL_IPS = ('127.0.0.1',)
 
 if DEBUG:
-    INTERNAL_IPS += ('0.0.0.0', )
+    def show_toolbar(request):
+        return True
+    SHOW_TOOLBAR_CALLBACK = show_toolbar
 
 ROOT_URLCONF = 'bookable.urls'
 
