@@ -21,6 +21,8 @@ $title-mazenda: #F02;
 $column-gray: #DDD;
 $title-gray: #666;
 
+$background-image-body: "/static/img/bgtile-nuno.png";
+
 @mixin wrapper-h2 {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -61,7 +63,7 @@ header {
 }
 
 body {
-    background-image: url('/static/img/background-paper.png');
+    background-image: url($background-image-body);
 }
 
 #socialbotton {
