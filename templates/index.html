@@ -22,18 +22,24 @@
         };
 
         $(document).keypress(function(keyevent) {
+            var is_button_push = false;
             previous_status = focus_status; 
             if (keyevent.keyCode === 106 || keyevent.charCode === 106) {
                 focus_status ++;
+                is_button_push = true;
             } else if (keyevent.keyCode === 107 || keyevent.charCode === 107) {
                 focus_status --;
+                is_button_push = true;
             }
 
             if (focus_status < 0) {
                 focus_status = 0;
+                is_button_push = false;
             }
- 
-            slideFunction();
+
+            if (is_button_push) {
+                slideFunction();
+            }
 
             });
     });
