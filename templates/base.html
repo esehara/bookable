@@ -20,18 +20,31 @@
 
     <header>
     <a href="/"><h1>BOOKABLE</h1></a>
-    <a href="http://b.hatena.ne.jp/entry/bookable.jp/" class="hatena-bookmark-button" data-hatena-bookmark-title="Bookable" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    <div class="fb-like" data-href="http://bookable.jp/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
-    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-<g:plusone></g:plusone>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bookable.jp/" data-lang="ja">ツイート</a>
+           <div id="socialbotton">
+               
+<div class="ninja_onebutton">
+<script type="text/javascript">
+//<![CDATA[
+(function(d){
+if(typeof(window.NINJA_CO_JP_ONETAG_BUTTON_c896b01fd3515638844f1a8de432309c)=='undefined'){
+    document.write("<sc"+"ript type='text\/javascript' src='http:\/\/omt.shinobi.jp\/b\/c896b01fd3515638844f1a8de432309c'><\/sc"+"ript>");
+}else{
+    window.NINJA_CO_JP_ONETAG_BUTTON_c896b01fd3515638844f1a8de432309c.ONETAGButton_Load();}
+})(document);
+//]]>
+</script><span class="ninja_onebutton_hidden" style="display:none;"></span><span style="display:none;" class="ninja_onebutton_hidden"></span>
+</div>
+
+        </div> 
+
     </header>
     <div class="page">
         <div id="main">
             {% block contents %}
             {% endblock %}
         </div>
+        
+
     </div>
 </body>
 </html>

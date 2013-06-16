@@ -64,6 +64,27 @@ body {
     background-image: url('/static/img/background-paper.png');
 }
 
+#socialbotton {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    text-align: right;
+    ul li {
+        display: inline;
+
+        #hatenabookamrk-wrapper {
+        }
+
+        #facebook-wrapper {
+        }
+
+        #googleplus-wrapper {
+            margin-left: 24px;
+        }
+
+    }
+}
+
 .page {
     @include container;
     #main {
