@@ -7,7 +7,35 @@
         $.autopager({
             link: '#nextlink',
             appendTo: '.contentwrapper'
-        });
+            });
+        var focus_status = 0;
+        var previous_status = 0;
+        var slideFunction = function() {
+            var target_position;
+            var elem = $('.books-favorite li.image').get(focus_status);
+            if (typeof elem === "undefined") {
+                focus_status = previous_status;
+            } else {
+                target_position = $(elem).offset();
+                $('html, body').animate({scrollTop: target_position.top}, 'fast');
+            }
+        };
+
+        $(document).keypress(function(keyevent) {
+            previous_status = focus_status; 
+            if (keyevent.keyCode === 106) {
+                focus_status ++;
+            } else if (keyevent.keyCode === 107) {
+                focus_status --;
+            }
+
+            if (focus_status < 0) {
+                focus_status = 0;
+            }
+ 
+            slideFunction();
+
+            });
     });
 </script>
 {% endblock %}
