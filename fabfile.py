@@ -11,10 +11,12 @@ from fabric.api import *
     os.environ['BOOKABLE_PORT']))
 def deploy():
     with cd('~/django/bookable'):
+        run('git reset --hard')
         run('git pull origin master')
         run('source ~/env/bookable/bin/activate &&'
             'source ~/env/bookable.sh &&'
             'pip install -r requirement.txt &&'
             'python manage.py migrate',
             shell=False)
+        sudo('supervisorctl reload')
         sudo('supervisorctl restart bookable')
