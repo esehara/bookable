@@ -112,11 +112,6 @@ DEBUG_TOOLBAR_PANELS = (
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-if DEBUG:
-    def show_toolbar(request):
-        return True
-    SHOW_TOOLBAR_CALLBACK = show_toolbar
-
 ROOT_URLCONF = 'bookable.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
