@@ -195,11 +195,12 @@ body {
         }
 
         .content:first-child {
-        
+            $radius-hori: 15px;
+            $radius-ver: 15px;
             @mixin top-left-radius {
-                @include border-corner-radius("top", "left", 25px 10px);
+                @include border-corner-radius("top", "left", $radius-hori $radius-ver);
                 .wrapper-h2:first-child {
-                    @include border-corner-radius("top", "left", 25px 10px);
+                    @include border-corner-radius("top", "left", $radius-hori $radius-ver);
                 }
             }
 
@@ -208,9 +209,9 @@ body {
             }
         
             @mixin top-right-radius {
-                @include border-corner-radius("top", "right", 25px 10px);
+                @include border-corner-radius("top", "right", $radius-hori $radius-ver);
                 .wrapper-h2:first-child {
-                    @include border-corner-radius("top", "right", 25px 10px);
+                    @include border-corner-radius("top", "right", $radius-hori $radius-ver);
                 }
             }
 
