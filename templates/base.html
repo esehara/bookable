@@ -5,6 +5,21 @@
     <title>Bookable</title>
     <link rel="stylesheet" href="{{STATIC_URL}}css/style.css" />
     <script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.10.1.min.js"></script>
+    
+    <link rel="stylesheet" href="{{STATIC_URL}}css/jquery.powertip-dark.min.css" />
+    <script type="text/javascript" src="{{STATIC_URL}}js/jquery.powertip.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+            $('#show_infomation').data('powertipjq', $([
+                    '<span id="title">このサービスについて</span>',
+                    '<p>このサービスは、はてなブックマークから、ユーザー数毎にランダムに表示するサービスです。</p>',
+                    '<p>一時期流行った本であったり、あるいは見しらぬ本との出会いをコンセプトとしています。</p>'].join('\n')));
+            $('#show_infomation').powerTip({
+                    placement: 'se',
+                    mouseOnToPopup: true
+                });
+    });    
+    </script>
     {% block extheader %}
     {% endblock %}
 </head>
@@ -19,10 +34,19 @@
   }(document, 'script', 'facebook-jssdk'));</script>
 
     <header>
-    <a href="/">
-        <img src="{{STATIC_URL}}/img/logo.png" alt="Bookable" />
-    </a>
-           <div id="socialbotton">
+<ul id="header">
+    <li> 
+        <a href="/">
+            <img src="{{STATIC_URL}}/img/logo.png" alt="Bookable" />
+        </a>
+    </li>
+
+    <li id="infomation">
+        <span id="show_infomation">what this?</a>
+    </li>
+</ul>
+
+<div id="socialbotton">
                
 <div class="ninja_onebutton">
 <script type="text/javascript">
