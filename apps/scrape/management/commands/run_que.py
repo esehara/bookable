@@ -62,6 +62,8 @@ class AmazonLink(object):
                     self.price = 0
             except UnicodeEncodeError:
                 self.price = 0
+            except ValueError:
+                self.price = 0
 
             self.detail = str(soup.find(
                 'div', {'class': 'productDescriptionWrapper'}))
