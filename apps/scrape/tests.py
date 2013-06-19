@@ -90,7 +90,7 @@ class HatenabookmarkScrapeTest(TestCase):
         que = ScrapeQue.objects.get(url=link.fix_aff())
         self.assertTrue(que)
 
-from apps.scrape.management.commands import run_que
+from apps.scrape.management.commands import simple_run_que
 from apps.shelf.models import Book
 
 
@@ -106,20 +106,20 @@ class GetAmazonDataTest(TestCase):
         self.test_que = ScrapeQue.objects.filter(is_done=False)[0]
 
     def test_get_amazonlink(self):
-        amazon = run_que.AmazonLink(self.test_que)
+        amazon = simple_run_que.AmazonLink(self.test_que)
         self.assertEqual(
             amazon.title,
             u'フリー~〈無料〉からお金を生みだす新戦略')
 
     def test_model_save(self):
-        amazon = run_que.AmazonLink(self.test_que)
+        amazon = simple_run_que.AmazonLink(self.test_que)
         amazon.save()
         book = Book.objects.all()[0]
         self.assertEqual(amazon.title, book.title)
         self.assertEqual(book.users, 2000)
 
     def test_que_is_done(self):
-        amazon = run_que.AmazonLink(
+        amazon = simple_run_que.AmazonLink(
             self.test_que)
         amazon.save()
         self.assertTrue(self.test_que.is_done)

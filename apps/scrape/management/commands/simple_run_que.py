@@ -22,7 +22,6 @@ class AmazonLink(object):
 
     def _get_bookdata(self):
         soup = self._get_html()
-        print self._que.url
         if self.response != 404:
             if (
                     soup.center and
