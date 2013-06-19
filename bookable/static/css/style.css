@@ -303,12 +303,12 @@ body {
   font-size: 24px;
 }
 /* line 248, ../../sass/style.scss */
-#loading p {
-  text-align: center;
-  margin-top: 12px;
+#loading #spin {
+  left: 32px;
+  margin-bottom: 12px;
 }
 
-/* line 257, ../../sass/style.scss */
+/* line 260, ../../sass/style.scss */
 #reloadbutton {
   position: fixed;
   font-size: 32px;
@@ -324,7 +324,7 @@ body {
   bottom: 10px;
   right: 10px;
 }
-/* line 266, ../../sass/style.scss */
+/* line 269, ../../sass/style.scss */
 #reloadbutton a {
   text-decoration: none;
   color: #CCC;

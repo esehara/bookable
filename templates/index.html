@@ -85,7 +85,7 @@
   className: 'spinner', // The CSS class to assign to the spinner
 zIndex: 2e9, // The z-index (defaults to 2000000000)
     top: 'auto', // Top position relative to parent in px
-    left: 'auto' // Left position relative to parent in px
+    left: '32px' // Left position relative to parent in px
     };
     var target = document.getElementById('spin');
     var spinner = new Spinner(opts).spin(target);
@@ -135,7 +135,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
 
 <div id="loading">
     <div id="spin"></div>
-    <p>loading ...</p>
+    <p id="loading_string">loading ...</p>
 </div>
 <div id="reloadbutton">
     <a href="/">RELOAD</a>

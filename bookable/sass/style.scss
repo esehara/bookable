@@ -245,9 +245,12 @@ body {
 #loading {
     margin: 12px;
     color: white;
-    p { 
-        text-align: center; 
-        margin-top: 12px;
+    #spin {
+        left: 32px;
+        margin-bottom: 12px;
+    }
+
+    #loading-string { 
     }
     padding-top: 12px;
     padding-bottom: 12px;
