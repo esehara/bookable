@@ -242,6 +242,18 @@ body {
     }
 }
 
+#loading {
+    background-color: $title-gray;
+    color: white;
+    p { 
+        text-align: center; 
+        margin-top: 12px;
+    }
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 24px;
+}
+
 #reloadbutton {
     position: fixed;
     font-size: 32px;
