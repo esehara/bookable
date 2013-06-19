@@ -34,13 +34,16 @@ def print_book(book):
     print
 
 
-def generate_thread(common_array):
+def generate_thread(
+        common_array,
+        target=amazon_process,
+        thread_args=()):
     result_thread = []
 
     for number, arr in enumerate(common_array):
         th = threading.Thread(
-            target=amazon_process,
-            args=(arr,),
+            target=target,
+            args=(arr, ) + thread_args,
             name="thread%d" % number)
         th.que = arr
         th.setDaemon(True)
@@ -74,4 +77,3 @@ class Command(BaseCommand):
             if len(main_que) < max_que / 2:
                 main_que += list(ScrapeQue.objects.filter(
                     is_done=False)[0:max_que / 2])
-            sleep(1)

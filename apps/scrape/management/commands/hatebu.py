@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
+import threading
 import json
 import urllib
 import re
+import redis
+import time
 from django.core.management.base import BaseCommand
 from apps.scrape.models import ScrapeQue
-
+from apps.scrape.management.commands import thread_run_que
 
 url = ("http://b.hatena.ne.jp/entrylist"
        "?sort=count&url=http%3A%2F%2Fwww.amazon.co.jp%2F")
@@ -78,15 +81,49 @@ def factory_links(pages):
     return [HatenaBookmark(link) for link in links]
 
 
+def hatebu_process(my_que, rs):
+    while 1:
+        if len(my_que) == 0:
+            time.sleep(1)
+            continue
+        run_page = my_que.pop(0)
+        print "Run Que --> Page: %d" % run_page
+        _make_que(
+            factory_links(run_page))
+        rs.set('hatenabookmark-%d' % run_page, 'True')
+
 class Command(BaseCommand):
 
     def handle(self, *args, **opts):
-        for page in range(10000):
-            print "--- Now %d page ----" % (page)
-            self._make_que(
-                factory_links(page))
+        rs = redis.Redis(host="127.0.0.1", port=6379, db=0)
+        if len(args) == 0:
+            pages = 0
+        else:
+            pages = int(args[0])
 
-    def _make_que(self, links):
-        for link in links:
-            if link.is_book():
-                link.make_que()
+        if len(args) == 2:
+            worker = int(args[1])
+        else:
+            worker = 10
+
+        child_ques = [[] for i in range(worker)]
+        threads = thread_run_que.generate_thread(
+            child_ques, target=hatebu_process,
+            thread_args=(rs,))
+        thread_run_que.run_thread(threads)
+        while 1:
+            for que in child_ques:
+                print "[Set Que] --> Page: %d" % pages
+                print "[Result] -->", child_ques
+                if (
+                        len(que) == 0 and
+                        rs.get('hatenabookmark-%s' % pages) == 'False'):
+                    que.append(pages)
+                pages += 1
+                time.sleep(1)
+
+
+def _make_que(links):
+    for link in links:
+        if link.is_book():
+            link.make_que()
