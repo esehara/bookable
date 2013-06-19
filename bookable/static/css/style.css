@@ -296,7 +296,7 @@ body {
 
 /* line 245, ../../sass/style.scss */
 #loading {
-  background-color: #666666;
+  margin: 12px;
   color: white;
   padding-top: 12px;
   padding-bottom: 12px;
