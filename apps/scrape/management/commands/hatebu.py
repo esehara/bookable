@@ -119,8 +119,10 @@ class Command(BaseCommand):
                         len(que) == 0 and
                         rs.get('hatenabookmark-%s' % pages) == 'False'):
                     que.append(pages)
-                pages += 1
-                time.sleep(1)
+                    pages += 1
+                    time.sleep(1)
+                if rs.get('hatenabookmark-%s' % pages) == 'True':
+                    pages += 1
 
 
 def _make_que(links):
