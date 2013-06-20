@@ -98,7 +98,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     <div class="content">
     <div class="books-favorite">    
         <div class="wrapper-h2">
-            <h2> 50user++ </h2>
+            <h2> 25user++ </h2>
         </div>
     {% for book in favorite_books %}
         {% include "books.html" %}
@@ -106,7 +106,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     </div> 
     <div class="books-normal">
         <div class="wrapper-h2">
-            <h2>50user - 25user </h2>
+            <h2>25user - 10user </h2>
         </div>
     {% for book in normal_books %}
         {% include "books.html" %}
@@ -115,7 +115,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     
     <div class="books-hot">
         <div class="wrapper-h2">
-            <h2>25user - 10user</h2>
+            <h2>10user - 5user</h2>
         </div>
     {% for book in hot_books %}
         {% include "books.html" %}
@@ -124,7 +124,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     
     <div class="books-newbee">
         <div class="wrapper-h2">
-            <h2>10user-- </h2>
+            <h2>5user-- </h2>
         </div>
         {% for book in newbee_books %}
             {% include "books.html" %}
