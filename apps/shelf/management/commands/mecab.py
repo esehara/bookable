@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import MeCab
-
+from apps.shelf.models import Keyword
 # define mecab dictionary
 mecab = MeCab.Tagger("mecabrc")
 
@@ -54,3 +54,16 @@ class MecabManager(object):
                 continue
             self.tokens.append(MecabToken(node))
             node = node.next
+
+    def create_keyword(self):
+        for token in self.tokens:
+            try:
+                keyword = Keyword.objects.get(
+                    name=token.text)
+                keyword.times += 1
+                model = keyword.save()
+                token.model = model
+            except Keyword.DoesNotExist:
+                model = Keyword.objects.create(
+                    name=token.text)
+                token.model = model

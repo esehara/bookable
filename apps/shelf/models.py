@@ -72,7 +72,8 @@ class Keyword(models.Model):
         verbose_name = verbose_name_plural = u"キーワード"
 
     name = models.CharField(u'キーワード', max_length=255)
-    text = models.TextField(u'解説')
+    times = models.IntegerField(u'頻度', default=1)
+    text = models.TextField(u'解説', null=True, blank=True)
     created_at = models.DateTimeField(u'作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(u'更新日時', auto_now=True)
 
