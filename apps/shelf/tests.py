@@ -135,6 +135,29 @@ class MecabTest(TestCase):
         self.assertEqual(
             keywordtobook.book.title,
             u'これはテストです')
+    
+    def test_token_to_keywordbook(self):
+        book_model = self.generate_book()
+        book_model.title = u"テストとテストと召喚師"
+        book_model.save()
+        self.mecabm = MecabManager(
+            bookmodel=book_model)
+        self.mecabm.create_keyword_to_book()
+        keywordtobook = KeywordToBook.objects.get(
+            keyword__name=u'テスト')
+        self.assertEqual(
+            keywordtobook.book.title,
+            u'テストとテストと召喚師')
+
+    def test_token_is_mecab_true(self):
+        self.generate_mecab_model()
+        self.mecabm.create_keyword_to_book()
+
+        keywordtobook = KeywordToBook.objects.get(
+            keyword__name=u'テスト')
+        self.assertTrue(
+            keywordtobook.book.is_mecab)
+
 
 class BookModelTest(TestCase):
 

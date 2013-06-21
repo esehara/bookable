@@ -88,3 +88,6 @@ class MecabManager(object):
                 KeywordToBook.objects.create(
                     book=token.model,
                     keyword=token.keyword_model)
+            finally:
+                self.model.is_mecab = True
+                self.model.save()
