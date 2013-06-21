@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import MeCab
-from apps.shelf.models import Keyword
+from apps.shelf.models import (
+    Keyword, KeywordToBook)
 # define mecab dictionary
 mecab = MeCab.Tagger("mecabrc")
 
 
 class MecabToken(object):
 
-    def __init__(self, node):
+    def __init__(self, node, model=None):
         self._generate_text(node.surface)
         self._generate_type_and_subtype(node.feature)
+        self.model = model
 
     def _generate_text(self, node_surface):
         if isinstance(node_surface, str):
@@ -32,8 +34,11 @@ class MecabManager(object):
 
     def __init__(self, bookmodel=None, debug=None):
         self.tokens = []
+        self.model = None
         if debug is not None:
             initialize = debug['title']
+            if bookmodel is not None:
+                self.model = bookmodel
         else:
             initialize = bookmodel.title
             self.model = bookmodel
@@ -52,19 +57,34 @@ class MecabManager(object):
             if node.surface == "":
                 node = node.next
                 continue
-            self.tokens.append(MecabToken(node))
+            self.tokens.append(MecabToken(node, model=self.model))
             node = node.next
 
     def _create_keyword(self):
-        for token in self.tokens:
+        for num, token in enumerate(self.tokens):
+            self.tokens[num].keyword_model = None
             if token.is_noun():
                 try:
                     keyword = Keyword.objects.get(
                         name=token.text)
                     keyword.times += 1
                     model = keyword.save()
-                    token.model = model
+                    self.tokens[num].keyword_model = model
                 except Keyword.DoesNotExist:
                     model = Keyword.objects.create(
                         name=token.text)
-                    token.model = model
+                    self.tokens[num].keyword_model = model
+
+    def create_keyword_to_book(self):
+        self._create_keyword()
+        for token in self.tokens:
+            if token.keyword_model is None:
+                continue
+            try:
+                KeywordToBook.objects.get(
+                    book=token.model,
+                    keyword=token.keyword_model)
+            except KeywordToBook.DoesNotExist:
+                KeywordToBook.objects.create(
+                    book=token.model,
+                    keyword=token.keyword_model)

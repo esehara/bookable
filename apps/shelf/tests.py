@@ -3,7 +3,8 @@ import MeCab
 from django.test import TestCase
 from apps.shelf.management.commands.mecab import (
     MecabManager, MecabToken)
-from apps.shelf.models import Book, Keyword
+from apps.shelf.models import (
+    Book, Keyword, KeywordToBook)
 
 class MecabTokenTest(TestCase):
     def setUp(self):
@@ -99,6 +100,7 @@ class MecabTest(TestCase):
 
     def test_token_to_model(self):
         self.generate_mecab_model()
+        self.mecabm.model = self.generate_book()
         self.mecabm._create_keyword()
         keyword = Keyword.objects.get(
             name=u'テスト')
@@ -112,6 +114,27 @@ class MecabTest(TestCase):
             is_not_noun = True
         self.assertTrue(is_not_noun)
 
+    def test_token_plus_one(self):
+        book_model = self.generate_book()
+        book_model.title = u"テストとテストと召喚師"
+        book_model.save()
+        self.mecabm = MecabManager(
+            bookmodel=book_model)
+        self.mecabm._create_keyword()
+        keyword = Keyword.objects.get(name=u'テスト')
+        self.assertEqual(
+            keyword.times, 2)
+
+    def test_token_to_book(self):
+        self.generate_mecab_model()
+        self.mecabm.create_keyword_to_book()
+
+        keywordtobook = KeywordToBook.objects.get(
+            keyword__name=u'テスト')
+
+        self.assertEqual(
+            keywordtobook.book.title,
+            u'これはテストです')
 
 class BookModelTest(TestCase):
 
