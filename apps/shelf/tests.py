@@ -99,10 +99,18 @@ class MecabTest(TestCase):
 
     def test_token_to_model(self):
         self.generate_mecab_model()
-        self.mecabm.create_keyword()
+        self.mecabm._create_keyword()
         keyword = Keyword.objects.get(
             name=u'テスト')
         self.assertEqual(keyword.name, u'テスト')
+
+        is_not_noun = False
+        try:
+            keyword = Keyword.objects.get(
+                name=u'これ')
+        except Keyword.DoesNotExist:
+            is_not_noun = True
+        self.assertTrue(is_not_noun)
 
 
 class BookModelTest(TestCase):

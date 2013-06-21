@@ -55,15 +55,16 @@ class MecabManager(object):
             self.tokens.append(MecabToken(node))
             node = node.next
 
-    def create_keyword(self):
+    def _create_keyword(self):
         for token in self.tokens:
-            try:
-                keyword = Keyword.objects.get(
-                    name=token.text)
-                keyword.times += 1
-                model = keyword.save()
-                token.model = model
-            except Keyword.DoesNotExist:
-                model = Keyword.objects.create(
-                    name=token.text)
-                token.model = model
+            if token.is_noun():
+                try:
+                    keyword = Keyword.objects.get(
+                        name=token.text)
+                    keyword.times += 1
+                    model = keyword.save()
+                    token.model = model
+                except Keyword.DoesNotExist:
+                    model = Keyword.objects.create(
+                        name=token.text)
+                    token.model = model
