@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import MeCab
+from django.core.management.base import BaseCommand
 from apps.shelf.models import (
-    Keyword, KeywordToBook)
+    Keyword, KeywordToBook, Book)
 # define mecab dictionary
 mecab = MeCab.Tagger("mecabrc")
 
@@ -71,23 +72,44 @@ class MecabManager(object):
                     model = keyword.save()
                     self.tokens[num].keyword_model = model
                 except Keyword.DoesNotExist:
-                    model = Keyword.objects.create(
+                    keyword = Keyword.objects.create(
                         name=token.text)
-                    self.tokens[num].keyword_model = model
+                    self.tokens[num].keyword_model = keyword
+                finally:
+                    print keyword
 
     def create_keyword_to_book(self):
         self._create_keyword()
+        ktb = None
         for token in self.tokens:
+            
             if token.keyword_model is None:
                 continue
             try:
-                KeywordToBook.objects.get(
+                ktb = KeywordToBook.objects.get(
                     book=token.model,
                     keyword=token.keyword_model)
             except KeywordToBook.DoesNotExist:
-                KeywordToBook.objects.create(
+                ktb = KeywordToBook.objects.create(
                     book=token.model,
                     keyword=token.keyword_model)
             finally:
-                self.model.is_mecab = True
-                self.model.save()
+                print ktb
+
+        self.model.is_mecab = True
+        self.model.save()
+
+
+class Command(BaseCommand):
+
+    def handle(self, *args, **opts):
+        while 1:
+            book = Book.objects.filter(is_mecab=False)[0]
+            if book.title != "":
+                print "[Books]: %s" % (book)
+                mecabm = MecabManager(book)
+                mecabm.create_keyword_to_book()
+            else:
+                print "PASS"
+                book.is_mecab = True
+                book.save()
