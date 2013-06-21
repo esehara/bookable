@@ -92,6 +92,7 @@ def hatebu_process(my_que, rs):
             factory_links(run_page))
         rs.set('hatenabookmark-%d' % run_page, 'True')
 
+
 class Command(BaseCommand):
 
     def handle(self, *args, **opts):
