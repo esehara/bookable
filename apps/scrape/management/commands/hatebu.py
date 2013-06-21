@@ -73,6 +73,7 @@ def _get_links(pages):
     html = urllib.urlopen(url=url + "&of=" + str(pages * 20)).read()
     soup = BeautifulSoup(html)
     links = soup.find_all("li", {"class": "entry-unit"})
+    del html
     return links
 
 

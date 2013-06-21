@@ -66,6 +66,31 @@ class Book(models.Model):
             serialize('json', d['hot_books']),
             serialize('json', d['newbee_books']))
 
+    @classmethod
+    def return_keyword_dict(cls):
+
+        d = {'ds': []}
+
+        class FourColumn:
+            def __init__(self, pre_list):
+                self.kfirst = pre_list.pop(0)
+                self.kfirst.books = [self.kfirst]
+                self.ksecond = pre_list.pop(0)
+                self.ksecond.books = [self.ksecond]
+                self.kthird = pre_list.pop(0)
+                self.kthird.books = [self.kthird]
+                self.kforth = pre_list.pop(0)
+                self.kforth.books = [self.kforth]
+
+        pre_list = list(KeywordToBook.objects.order_by('?')[:20])
+
+        while pre_list:
+            print pre_list
+            d['ds'].append(FourColumn(pre_list))
+
+        return d
+
+
 class Keyword(models.Model):
 
     class Meta:

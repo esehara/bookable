@@ -1,0 +1,16 @@
+{% if book.book.title %}
+        <div class="books-container">
+            <ul>
+                <li class="image">
+                        <a href="{{book.book.affilize}}" target="_blank">
+                                <img src="{{book.book.image}}" title="{{book.book.title}}" />
+                        </a>
+                </li>
+                <li class="users">
+                <a href="{{book.book.link_to_hatenabookmark}}" target="_blank">
+                        <span class="user-number">{{book.book.users}}</span>users
+                    </a>
+                    </li>
+            </ul>
+        </div>
+{% endif %}
