@@ -10,6 +10,9 @@ from fabric.api import *
     (os.environ['BOOKABLE_HOST'],
     os.environ['BOOKABLE_PORT']))
 def deploy():
+    # TODO: bad how-to
+    sudo('pkill -f superviord')
+    sudo('pkill -f gunicorn')
     with cd('~/django/bookable'):
         run('git reset --hard')
         run('git pull origin master')
@@ -22,7 +25,4 @@ def deploy():
 
 
 def supervisorctl():
-    for process in [
-            'reread', 'update',
-            'restart bookable']:
-        run('supervisorctl %s' % process)
+    sudo('supervisord')
