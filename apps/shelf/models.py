@@ -70,32 +70,42 @@ class Book(models.Model):
     def return_keyword_dict(cls):
 
         d = {'ds': []}
-
-        def _get_keyword():
-
-            class Wrapper:
-
-                def __init__(self, keyword):
-                    self.keyword = keyword
-
-                def get_books(self):
-                    self.books = [
-                        i.book for i in
-                        list(KeywordToBook.objects.filter(
-                            keyword=self.keyword).order_by('?')[:3])]
-                    print self.books
-            _d = {}
-            keywords = list(
-                Keyword.objects.filter(times__gt=5).order_by('?')[:5])
-
-            for tkey in ['kfirst', 'ksecond', 'kthird', 'kforth']:
-                _d[tkey] = Wrapper(keywords.pop(0))
-                _d[tkey].get_books()
-
-            return _d
-
         d['ds'].append(_get_keyword())
+        d['return_url'] = 'keyword'
         return d
+
+    @classmethod
+    def return_idea_dict(cls):
+        d = {'ds': []}
+        for i in range(5):
+            d['ds'].append(
+                _get_keyword(
+                    get_books=1, limit=1))
+        d['return_url'] = 'idea'
+        return d
+
+
+def _get_keyword(get_books=3, limit=5):
+
+    class Wrapper:
+
+        def __init__(self, keyword):
+            self.keyword = keyword
+
+        def get_books(self):
+            self.books = [
+                i.book for i in
+                list(KeywordToBook.objects.filter(
+                    keyword=self.keyword).order_by('?')[:get_books])]
+    _d = {}
+    keywords = list(
+        Keyword.objects.filter(times__gt=limit).order_by('?')[:5])
+
+    for tkey in ['kfirst', 'ksecond', 'kthird', 'kforth']:
+        _d[tkey] = Wrapper(keywords.pop(0))
+        _d[tkey].get_books()
+
+    return _d
 
 
 class Keyword(models.Model):

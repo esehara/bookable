@@ -11,6 +11,10 @@ urlpatterns = patterns(
         'apps.shelf.views.keyword.index',
         name='keyword'),
 
+    url('idea',
+        'apps.shelf.views.ideahelp.index',
+        name='ideahelp'),
+
     url('^api/books/random$',
         'apps.shelf.views.api.book_random_api',
         name='get_random_books_api')
