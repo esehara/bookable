@@ -71,23 +71,33 @@ class Book(models.Model):
 
         d = {'ds': []}
 
-        class FourColumn:
-            def __init__(self, pre_list):
-                self.kfirst = pre_list.pop(0)
-                self.kfirst.books = [self.kfirst]
-                self.ksecond = pre_list.pop(0)
-                self.ksecond.books = [self.ksecond]
-                self.kthird = pre_list.pop(0)
-                self.kthird.books = [self.kthird]
-                self.kforth = pre_list.pop(0)
-                self.kforth.books = [self.kforth]
+        def _get_keyword():
+            class Wrapper:
+                def __init__(self, keyword):
+                    self.keyword = keyword
 
-        pre_list = list(KeywordToBook.objects.order_by('?')[:20])
+            class Wrapper:
 
-        while pre_list:
-            print pre_list
-            d['ds'].append(FourColumn(pre_list))
+                def __init__(self, keyword):
+                    self.keyword = keyword
 
+                def get_books(self):
+                    self.books = [
+                        i.book for i in
+                        list(KeywordToBook.objects.filter(
+                            keyword=self.keyword).order_by('?')[:5])]
+                    print self.books
+            _d = {}
+            keywords = list(
+                Keyword.objects.filter(times__gt=5).order_by('?')[:5])
+
+            for tkey in ['kfirst', 'ksecond', 'kthird', 'kforth']:
+                _d[tkey] = Wrapper(keywords.pop(0))
+                _d[tkey].get_books()
+
+            return _d
+
+        d['ds'].append(_get_keyword())
         return d
 
 
@@ -95,7 +105,7 @@ class Keyword(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = u"キーワード"
-
+        ordering = ['-times']
     name = models.CharField(u'キーワード', max_length=255)
     times = models.IntegerField(u'頻度', default=1)
     text = models.TextField(u'解説', null=True, blank=True)

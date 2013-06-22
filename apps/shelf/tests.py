@@ -76,9 +76,11 @@ class MecabTest(TestCase):
         self.assertNoun(tokens[1], u'は', False)
         self.assertNoun(tokens[2], u'テスト', True)
 
-    def generate_book(self):
+    def generate_book(self, title=None):
+        if title is None:
+            title = u'これはテストです'
         return Book.objects.create(
-            title=u'これはテストです',
+            title=title,
             author=u'これは著者です',
             price=1000,
             url='http://',
@@ -88,15 +90,28 @@ class MecabTest(TestCase):
             is_mecab=False,
             via=u'はてなブックマーク')
 
-    def generate_mecab_model(self):
+    def generate_mecab_model(self, title=None):
         self.mecabm = MecabManager(
-            bookmodel=self.generate_book())
+            bookmodel=self.generate_book(title=title))
 
     def test_mecab_book_tokenlize(self):
         self.generate_mecab_model()
         tokens = self.mecabm.tokens
         self.assertNoun(tokens[0], u'これ', False)
         self.assertNoun(tokens[2], u'テスト', True)
+
+    def test_mecab_check_valid_token(self):
+        self.generate_mecab_model(
+            title='これはAの2000年前のテストです')
+        tokens = self.mecabm.tokens
+        tokens = self.mecabm.tokens
+        print "--- TOKEN LIST ---"
+        for name in [token.text for token in tokens]:
+            print name
+        print "------------------"
+        self.assertNoun(tokens[0], u'これ', False)
+        self.assertNoun(tokens[2], u'A', False)
+        self.assertNoun(tokens[4], u'2000', False)
 
     def test_token_to_model(self):
         self.generate_mecab_model()

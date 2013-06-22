@@ -1,8 +1,8 @@
 watch('(.*).py$')  { |m| code_changed(m[0]) }
 
 def code_changed(file)
-    #scrape
-    run "python manage.py test scrape shelf"
+    #scrape -- very slory test...
+    run "python manage.py test shelf"
 end
 
 def run(cmd)

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import MeCab
+import re
 from django.core.management.base import BaseCommand
 from apps.shelf.models import (
     Keyword, KeywordToBook, Book)
 # define mecab dictionary
 mecab = MeCab.Tagger("mecabrc")
+re_number = re.compile("[0-9].*")
 
 
 class MecabToken(object):
@@ -27,8 +29,12 @@ class MecabToken(object):
         self.subtype = feature_array[1]
 
     def is_noun(self):
-        return (
-            self.type == u"名詞" and self.subtype != u"代名詞")
+        _is_noun = (
+            self.type == u"名詞" and
+            self.subtype != u"代名詞" and
+            len(self.text) > 1 and
+            not re_number.search(self.text))
+        return _is_noun
 
 
 class MecabManager(object):
@@ -70,7 +76,7 @@ class MecabManager(object):
                         name=token.text)
                     keyword.times += 1
                     model = keyword.save()
-                    self.tokens[num].keyword_model = model
+                    self.tokens[num].keyword_model = keyword
                 except Keyword.DoesNotExist:
                     keyword = Keyword.objects.create(
                         name=token.text)
