@@ -99,7 +99,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     <div class="content">
     <div class="books-favorite">    
         <div class="wrapper-h2">
-            <h2> {{d.kfirst.keyword}} </h2>
+            <h2> {{d.kfirst.keyword}} ({{d.kfirst.keyword.times}}冊) </h2>
         </div>
     {% for book in d.kfirst.books %}
         {% include "books.html" %}
@@ -107,7 +107,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     </div> 
     <div class="books-normal">
         <div class="wrapper-h2">
-            <h2> {{d.ksecond.keyword}} </h2>
+            <h2> {{d.ksecond.keyword}} ({{d.ksecond.keyword.times}}冊) </h2>
         </div>
     {% for book in d.ksecond.books %}
         {% include "books.html" %}
@@ -116,7 +116,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     
     <div class="books-hot">
         <div class="wrapper-h2">
-            <h2> {{d.kthird.keyword}} </h2>
+            <h2> {{d.kthird.keyword}} ({{d.kthird.keyword.times}}冊)</h2>
         </div>
     {% for book in d.kthird.books %}
         {% include "books.html" %}
@@ -125,7 +125,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     
     <div class="books-newbee">
         <div class="wrapper-h2">
-            <h2> {{d.kforth.keyword}} </h2>
+            <h2> {{d.kforth.keyword}} ({{d.kforth.keyword.times}}冊)</h2>
         </div>
         {% for book in d.kforth.books %}
             {% include "books.html" %}

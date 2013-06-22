@@ -85,7 +85,7 @@ class Book(models.Model):
                     self.books = [
                         i.book for i in
                         list(KeywordToBook.objects.filter(
-                            keyword=self.keyword).order_by('?')[:5])]
+                            keyword=self.keyword).order_by('?')[:3])]
                     print self.books
             _d = {}
             keywords = list(
