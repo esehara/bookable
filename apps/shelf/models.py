@@ -72,9 +72,6 @@ class Book(models.Model):
         d = {'ds': []}
 
         def _get_keyword():
-            class Wrapper:
-                def __init__(self, keyword):
-                    self.keyword = keyword
 
             class Wrapper:
 
