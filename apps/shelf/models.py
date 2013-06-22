@@ -8,7 +8,7 @@ class Book(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = u"書誌情報"
-        ordering = ['created_at']
+        ordering = ['-click']
 
     title = models.CharField(u'書名', max_length=255)
     author = models.CharField(u'著者', max_length=255)
@@ -20,6 +20,7 @@ class Book(models.Model):
     is_mecab = models.BooleanField(u'Mecab解析', default=False)
     text = models.TextField(u'紹介文章', null=True)
     via = models.CharField('引用元', max_length=255)
+    click = models.IntegerField(u'クリック数', default=0)
     created_at = models.DateTimeField(u'作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(u'更新日時', auto_now=True)
 
