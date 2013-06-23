@@ -7,4 +7,5 @@ urlpatterns = patterns(
     '',
     url(r'^manager/', include(admin.site.urls)),
     url(r'', include('apps.shelf.urls')),
+    url(r'', include('apps.booklog.urls')),
 )

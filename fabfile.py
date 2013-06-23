@@ -11,7 +11,7 @@ from fabric.api import *
     os.environ['BOOKABLE_PORT']))
 def deploy():
     # TODO: bad how-to
-    sudo('pkill -f superviord')
+    sudo('pkill -f supervisord')
     sudo('pkill -f gunicorn')
     with cd('~/django/bookable'):
         run('git reset --hard')

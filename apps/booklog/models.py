@@ -14,3 +14,24 @@ class BookLog(models.Model):
 
     def __unicode__(self):
         return u"%s(%s)" % (self.book.title, self.updated_at)
+
+    @classmethod
+    def return_page_click_dict(cls):
+        d = {
+            'kfirst': [],
+            'ksecond': [],
+            'kthird': [],
+            'kforth': []}
+
+        booklog = list(BookLog.objects.all()[:20])
+        for num, log in enumerate(booklog):
+            push_column = lambda x: num % 4 == x
+            if push_column(0):
+                d['kfirst'].append(log.book)
+            if push_column(1):
+                d['ksecond'].append(log.book)
+            elif push_column(2):
+                d['kthird'].append(log.book)
+            elif push_column(3):
+                d['kforth'].append(log.book)
+        return d
