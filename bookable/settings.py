@@ -126,7 +126,8 @@ TEMPLATE_DIRS = (
 PROJECT_APPS = (
     'bookable',
     'apps.scrape',
-    'apps.shelf')
+    'apps.shelf',
+    'apps.booklog')
 
 INSTALLED_APPS = (
     'django.contrib.auth',
