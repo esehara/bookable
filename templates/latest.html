@@ -133,4 +133,15 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     </div>
     </div>
 </div>
+{% if autopage %}
+<div id="loading">
+    <div id="spin"></div>
+    <p id="loading_string"><a href="/{{return_url}}" style="color:white">loading ...</a></p>
+</div>
+<div id="reloadbutton">
+    <a href="/{{return_url}}" style="hidden">RELOAD</a>
+</div>
+<a href="/{{return_url}}" ref="next" id="nextlink" style="display:none;color:white">Reload</a>
+<script type="text/javascript" src="{{STATIC_URL}}js/spin.min.js"></script>
+{% endif %}
 {% endblock %}

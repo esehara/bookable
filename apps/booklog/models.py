@@ -16,14 +16,18 @@ class BookLog(models.Model):
         return u"%s(%s)" % (self.book.title, self.updated_at)
 
     @classmethod
-    def return_page_click_dict(cls):
+    def return_page_click_dict(cls, page=0):
         d = {
             'kfirst': [],
             'ksecond': [],
             'kthird': [],
-            'kforth': []}
+            'kforth': [],
+            'autopage': True}
 
-        booklog = list(BookLog.objects.all()[:20])
+        booklog = list(BookLog.objects.all()[page * 20:(page + 1) * 20])
+        if BookLog.objects.all().count() < (page + 1) * 20:
+            d['autopage'] = False
+
         for num, log in enumerate(booklog):
             push_column = lambda x: num % 4 == x
             if push_column(0):
