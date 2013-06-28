@@ -191,6 +191,10 @@ body {
             background-color: $column-cyan;
             .wrapper-h2 { 
                 background-color: $title-cyan;
+                a {
+                    @include link-colors(white);
+                }
+
             }
             
             .keyword {
@@ -208,7 +212,13 @@ body {
             @include column-border-line;
             margin: 0px;
             background-color: $column-yellow;
-            .wrapper-h2 { background-color: $title-yellow; }
+            .wrapper-h2 { 
+                background-color: $title-yellow;
+                a {
+                    @include link-colors(white);
+                }
+
+            }
             
             .keyword {
                 padding: 24px;
@@ -226,7 +236,12 @@ body {
             @include column-border-line;
             margin: 0px;
             background-color: $column-mazenda;
-            .wrapper-h2 { background-color: $title-mazenda; }
+            .wrapper-h2 { 
+                background-color: $title-mazenda;
+                a {
+                    @include link-colors(white);
+                }
+            }
             .keyword {
                 padding: 24px;
                 font-size: 250%;
@@ -247,6 +262,10 @@ body {
             background-color: $column-gray;
             .wrapper-h2 { 
                 background-color: $title-gray;
+                a {
+                    @include link-colors(white);
+                }
+
             }
             .keyword {
                 padding: 24px;

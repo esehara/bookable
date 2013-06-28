@@ -229,17 +229,21 @@ body {
 .page #main .books-favorite .wrapper-h2 {
   background-color: #005cf0;
 }
-/* line 196, ../../sass/style.scss */
+/* line 194, ../../sass/style.scss */
+.page #main .books-favorite .wrapper-h2 a {
+  color: white;
+}
+/* line 200, ../../sass/style.scss */
 .page #main .books-favorite .keyword {
   padding: 24px;
   font-size: 250%;
   text-align: center;
 }
-/* line 200, ../../sass/style.scss */
+/* line 204, ../../sass/style.scss */
 .page #main .books-favorite .keyword a {
   color: #003d8f;
 }
-/* line 206, ../../sass/style.scss */
+/* line 210, ../../sass/style.scss */
 .page #main .books-normal {
   width: 24.05063%;
   float: left;
@@ -250,21 +254,25 @@ body {
   margin: 0px;
   background-color: #ffcc00;
 }
-/* line 211, ../../sass/style.scss */
+/* line 215, ../../sass/style.scss */
 .page #main .books-normal .wrapper-h2 {
   background-color: #ff8a00;
 }
-/* line 213, ../../sass/style.scss */
+/* line 217, ../../sass/style.scss */
+.page #main .books-normal .wrapper-h2 a {
+  color: white;
+}
+/* line 223, ../../sass/style.scss */
 .page #main .books-normal .keyword {
   padding: 24px;
   font-size: 250%;
   text-align: center;
 }
-/* line 217, ../../sass/style.scss */
+/* line 227, ../../sass/style.scss */
 .page #main .books-normal .keyword a {
   color: #9f7c00;
 }
-/* line 224, ../../sass/style.scss */
+/* line 234, ../../sass/style.scss */
 .page #main .books-hot {
   width: 24.05063%;
   float: left;
@@ -275,21 +283,25 @@ body {
   margin: 0px;
   background-color: #eb008b;
 }
-/* line 229, ../../sass/style.scss */
+/* line 239, ../../sass/style.scss */
 .page #main .books-hot .wrapper-h2 {
   background-color: #be0036;
 }
-/* line 230, ../../sass/style.scss */
+/* line 241, ../../sass/style.scss */
+.page #main .books-hot .wrapper-h2 a {
+  color: white;
+}
+/* line 245, ../../sass/style.scss */
 .page #main .books-hot .keyword {
   padding: 24px;
   font-size: 250%;
   text-align: center;
 }
-/* line 234, ../../sass/style.scss */
+/* line 249, ../../sass/style.scss */
 .page #main .books-hot .keyword a {
   color: #9b000b;
 }
-/* line 243, ../../sass/style.scss */
+/* line 258, ../../sass/style.scss */
 .page #main .books-newbee {
   width: 24.05063%;
   float: left;
@@ -300,46 +312,50 @@ body {
   margin: 0px;
   background-color: #b9b9b9;
 }
-/* line 248, ../../sass/style.scss */
+/* line 263, ../../sass/style.scss */
 .page #main .books-newbee .wrapper-h2 {
   background-color: #666666;
 }
-/* line 251, ../../sass/style.scss */
+/* line 265, ../../sass/style.scss */
+.page #main .books-newbee .wrapper-h2 a {
+  color: white;
+}
+/* line 270, ../../sass/style.scss */
 .page #main .books-newbee .keyword {
   padding: 24px;
   font-size: 250%;
   text-align: center;
 }
-/* line 255, ../../sass/style.scss */
+/* line 274, ../../sass/style.scss */
 .page #main .books-newbee .keyword a {
   color: #222222;
 }
-/* line 272, ../../sass/style.scss */
+/* line 291, ../../sass/style.scss */
 .page #main .content:first-child .books-favorite:first-child {
   -moz-border-radius-topleft: 15px 15px;
   -webkit-border-top-left-radius: 15px 15px;
   border-top-left-radius: 15px 15px;
 }
-/* line 267, ../../sass/style.scss */
+/* line 286, ../../sass/style.scss */
 .page #main .content:first-child .books-favorite:first-child .wrapper-h2:first-child {
   -moz-border-radius-topleft: 15px 15px;
   -webkit-border-top-left-radius: 15px 15px;
   border-top-left-radius: 15px 15px;
 }
-/* line 283, ../../sass/style.scss */
+/* line 302, ../../sass/style.scss */
 .page #main .content:first-child .books-newbee:nth-child(4) {
   -moz-border-radius-topright: 15px 15px;
   -webkit-border-top-right-radius: 15px 15px;
   border-top-right-radius: 15px 15px;
 }
-/* line 278, ../../sass/style.scss */
+/* line 297, ../../sass/style.scss */
 .page #main .content:first-child .books-newbee:nth-child(4) .wrapper-h2:first-child {
   -moz-border-radius-topright: 15px 15px;
   -webkit-border-top-right-radius: 15px 15px;
   border-top-right-radius: 15px 15px;
 }
 
-/* line 290, ../../sass/style.scss */
+/* line 309, ../../sass/style.scss */
 #loading {
   margin: 12px;
   color: white;
@@ -347,13 +363,13 @@ body {
   padding-bottom: 12px;
   font-size: 24px;
 }
-/* line 293, ../../sass/style.scss */
+/* line 312, ../../sass/style.scss */
 #loading #spin {
   left: 32px;
   margin-bottom: 12px;
 }
 
-/* line 305, ../../sass/style.scss */
+/* line 324, ../../sass/style.scss */
 #reloadbutton {
   position: fixed;
   font-size: 32px;
@@ -369,7 +385,7 @@ body {
   bottom: 10px;
   right: 10px;
 }
-/* line 314, ../../sass/style.scss */
+/* line 333, ../../sass/style.scss */
 #reloadbutton a {
   text-decoration: none;
   color: #CCC;

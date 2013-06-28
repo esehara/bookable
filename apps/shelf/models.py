@@ -197,7 +197,11 @@ class Keyword(models.Model):
         if KeywordToBook.objects.filter(
                 keyword=keyword).count() < (page + 1) * 20:
             d['autopage'] = False
-
+        d['keyword'] = keyword
+        randbook = KeywordToBook.objects.filter(
+            keyword=keyword).order_by('?')[0].book
+        d['nextkeyword'] = KeywordToBook.objects.exclude(keyword=keyword).filter(
+            book=randbook).order_by('?')[0].keyword
         for num, ktb in enumerate(ktbs):
             push_column = lambda x: num % 4 == x
             if push_column(0):
@@ -212,8 +216,14 @@ class Keyword(models.Model):
 
 class KeywordToBook(models.Model):
 
-    keyword = models.ForeignKey(Keyword, verbose_name=u'キーワード')
-    book = models.ForeignKey(Book, verbose_name=u'書籍')
+    keyword = models.ForeignKey(
+        Keyword,
+        verbose_name=u'キーワード',
+        db_index=True)
+    book = models.ForeignKey(
+        Book,
+        verbose_name=u'書籍',
+        db_index=True)
 
     def __unicode__(self):
         return u"%s -> %s" % (

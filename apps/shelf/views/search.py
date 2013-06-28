@@ -9,9 +9,9 @@ def index(request):
     keyword = request.GET.get('query', None)
     d = Keyword.return_page_search_dict(
         page=int(page) - 1, keyword=keyword)
-    d['return_url'] = "/search?" + urlencode([
-        ('page', page),
-        (keyword, keyword)])
+    d['return_url'] = "search?" + urlencode(
+        [('page', int(page) + 1)]) + "&" + urlencode(
+            [('query', keyword)])
     return render(
         request,
         'search.html',

@@ -98,7 +98,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     <div class="content">
     <div class="books-favorite">    
         <div class="wrapper-h2">
-            <h2> キーワード </h2>
+            <h2> キーワード -> </h2>
         </div>
     {% for book in kfirst %}
         {% include "books.html" %}
@@ -107,7 +107,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
 
     <div class="books-normal">
         <div class="wrapper-h2">
-            <h2></h2>
+            <h2>{{keyword.name}} ({{keyword.times}}冊)</h2>
         </div>
     {% for book in ksecond %}
         {% include "books.html" %}
@@ -116,7 +116,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     
     <div class="books-hot">
         <div class="wrapper-h2">
-            <h2></h2>
+            <h2>次の候補 -> </h2>
         </div>
     {% for book in kthird %}
         {% include "books.html" %}
@@ -125,7 +125,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
     
     <div class="books-newbee">
         <div class="wrapper-h2">
-            <h2></h2>
+            <h2><a href="/search?query={{nextkeyword.name|urlencode}}">{{nextkeyword.name}}</a></h2>
         </div>
         {% for book in kforth %}
             {% include "books.html" %}
