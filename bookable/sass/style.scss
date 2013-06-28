@@ -12,15 +12,19 @@ $background-body: #68462B;
 
 $title-cyan: #005CF0;
 $column-cyan: #00ADEF;
+$keyword-cyan: #003D8F;
 
 $title-yellow: #FF8A00;
 $column-yellow: #FFCC00;
+$keyword-yellow: #9F7C00;
 
 $title-mazenda: #BE0036;
 $column-mazenda: #EB008B;
+$keyword-mazenda: #9B000B;
 
 $title-gray: #666;
 $column-gray: #B9B9B9;
+$keyword-gray: #222;
 
 $background-image-body: "/static/img/bgtile-nuno.png";
 
@@ -145,7 +149,7 @@ body {
                 .title {
                     border-top: 3px solid #666666;
                 }
-
+                
                 .users {
                     font-weight: bold;
                     text-align: right;
@@ -188,6 +192,15 @@ body {
             .wrapper-h2 { 
                 background-color: $title-cyan;
             }
+            
+            .keyword {
+                padding: 24px;
+                font-size: 250%;
+                text-align: center;
+                a {
+                    @include link-colors($keyword-cyan); 
+                }
+            }
         }
         
         .books-normal {
@@ -196,6 +209,15 @@ body {
             margin: 0px;
             background-color: $column-yellow;
             .wrapper-h2 { background-color: $title-yellow; }
+            
+            .keyword {
+                padding: 24px;
+                font-size: 250%;
+                text-align: center;
+                a {
+                    @include link-colors($keyword-yellow); 
+                }
+            }
         }
 
         
@@ -205,6 +227,15 @@ body {
             margin: 0px;
             background-color: $column-mazenda;
             .wrapper-h2 { background-color: $title-mazenda; }
+            .keyword {
+                padding: 24px;
+                font-size: 250%;
+                text-align: center;
+                a {
+                    @include link-colors($keyword-mazenda); 
+                }
+            }
+
 
         }
         
@@ -217,6 +248,15 @@ body {
             .wrapper-h2 { 
                 background-color: $title-gray;
             }
+            .keyword {
+                padding: 24px;
+                font-size: 250%;
+                text-align: center;
+                a {
+                    @include link-colors($keyword-gray); 
+                }
+            }
+
         }
 
         .content:first-child {

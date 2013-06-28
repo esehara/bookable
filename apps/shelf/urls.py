@@ -11,6 +11,14 @@ urlpatterns = patterns(
         'apps.shelf.views.keyword.index',
         name='keyword'),
 
+    url('^keyword/list$',
+        'apps.shelf.views.keyword.list',
+        name='keyword-list'),
+
+    url('^search$',
+        'apps.shelf.views.search.index',
+        name='search'),
+
     url('^idea$',
         'apps.shelf.views.ideahelp.index',
         name='ideahelp'),

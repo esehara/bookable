@@ -148,7 +148,67 @@ class Keyword(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.name
+ 
+    @classmethod
+    def return_keyword_dict(cls):
+        d = {
+            'kfirst': [],
+            'ksecond': [],
+            'kthird': [],
+            'kforth': [],
+            'return_url': 'keyword/list'}
 
+        keywords = list(
+            Keyword.objects.filter(times__gt=20).order_by('?')[:20])
+
+        for num, keyword in enumerate(keywords):
+            push_column = lambda x: num % 4 == x
+            if push_column(0):
+                d['kfirst'].append(keyword)
+            if push_column(1):
+                d['ksecond'].append(keyword)
+            elif push_column(2):
+                d['kthird'].append(keyword)
+            elif push_column(3):
+                d['kforth'].append(keyword)
+        return d 
+
+    @classmethod
+    def return_page_search_dict(cls, page=0, keyword=None):
+        d = {
+            'kfirst': [],
+            'ksecond': [],
+            'kthird': [],
+            'kforth': [],
+            'autopage': True}
+
+        if keyword is None:
+            keyword = Keyword.objects.order_by('?')[0]
+        else:
+            try:
+                keyword = Keyword.objects.get(name=keyword)
+            except Keyword.DoesNotExist:
+                keyword = Keyword.objects.order_by('?')[0]
+
+        ktbs = list(
+            KeywordToBook.objects.filter(
+                keyword=keyword)[page * 20:(page + 1) * 20])
+
+        if KeywordToBook.objects.filter(
+                keyword=keyword).count() < (page + 1) * 20:
+            d['autopage'] = False
+
+        for num, ktb in enumerate(ktbs):
+            push_column = lambda x: num % 4 == x
+            if push_column(0):
+                d['kfirst'].append(ktb.book)
+            if push_column(1):
+                d['ksecond'].append(ktb.book)
+            elif push_column(2):
+                d['kthird'].append(ktb.book)
+            elif push_column(3):
+                d['kforth'].append(ktb.book)
+        return d
 
 class KeywordToBook(models.Model):
 

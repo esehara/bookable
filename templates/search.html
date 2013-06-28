@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block extheader %}
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.autopager-1.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $.autopager({
+            link: '#nextlink',
+            appendTo: '.contentwrapper'
+            });
+        var focus_status = 0;
+        var previous_status = 0;
+        var is_animate = false;
+        var slideFunction = function() {
+            var target_position;
+            var elem = $('.books-favorite li.image').get(focus_status);
+            if (typeof elem === "undefined") {
+                focus_status = previous_status;
+            } else {
+                target_position = $(elem).offset();
+                is_animate = true;
+                $('html, body').animate({scrollTop: target_position.top - 24}, 'fast', function() {
+                   is_animate = false; 
+                });
+            }
+        };
+        var check_position = function() {
+            var position = $('body').scrollTop();
+            if (!is_animate) {
+            $('.books-favorite .books-container').each(function(index, dom) {
+                var elem_top = $(dom).offset().top;
+                var elem_bottom = $(dom).height() + elem_top;
+
+                if (position > elem_top && elem_bottom > position) {
+                        focus_status = index + 1;
+                    }
+                });
+            }
+        }
+
+        window.setInterval(check_position, 1000);
+
+        $(document).keypress(function(keyevent) {
+            var is_button_push = false;
+            var key_check = function(_keyevent, number) {
+                return _keyevent.keyCode === number || _keyevent.charCode === number;
+            }
+
+            previous_status = focus_status; 
+            if (key_check(keyevent, 106)) {
+                focus_status ++;
+                is_button_push = true;
+            } else if (key_check(keyevent, 107)) {
+                focus_status --;
+                is_button_push = true;
+            }
+
+            if (key_check(keyevent, 32)) {
+                check_position();
+            }
+
+            if (focus_status < 0) {
+                focus_status = 0;
+                is_button_push = false;
+            }
+
+            if (is_button_push) {
+                slideFunction();
+            }
+
+        });
+    var opts = {
+  lines: 11, // The number of lines to draw
+  length: 4, // The length of each line
+  width: 3, // The line thickness
+  radius: 7, // The radius of the inner circle
+  corners: 0.7, // Corner roundness (0..1)
+  rotate: 0, // The rotation offset
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#FFF', // #rgb or #rrggbb
+  speed: 0.8, // Rounds per second
+  trail: 50, // Afterglow percentage
+  shadow: false, // Whether to render a shadow
+  hwaccel: false, // Whether to use hardware acceleration
+  className: 'spinner', // The CSS class to assign to the spinner
+zIndex: 2e9, // The z-index (defaults to 2000000000)
+    top: 'auto', // Top position relative to parent in px
+    left: '32px' // Left position relative to parent in px
+    };
+    var target = document.getElementById('spin');
+    var spinner = new Spinner(opts).spin(target);
+    });
+</script>
+{% endblock %}
+
+{% block contents %}
+<div class="contentwrapper">
+    <div class="content">
+    <div class="books-favorite">    
+        <div class="wrapper-h2">
+            <h2> キーワード </h2>
+        </div>
+    {% for book in kfirst %}
+        {% include "books.html" %}
+    {% endfor %} 
+    </div>
+
+    <div class="books-normal">
+        <div class="wrapper-h2">
+            <h2></h2>
+        </div>
+    {% for book in ksecond %}
+        {% include "books.html" %}
+    {% endfor %}
+    </div>
+    
+    <div class="books-hot">
+        <div class="wrapper-h2">
+            <h2></h2>
+        </div>
+    {% for book in kthird %}
+        {% include "books.html" %}
+    {% endfor %}
+    </div>
+    
+    <div class="books-newbee">
+        <div class="wrapper-h2">
+            <h2></h2>
+        </div>
+        {% for book in kforth %}
+            {% include "books.html" %}
+        {% endfor %}
+    </div>
+    </div>
+</div>
+{% if autopage %}
+<div id="loading">
+    <div id="spin"></div>
+    <p id="loading_string"><a href="/{{return_url}}" style="color:white">loading ...</a></p>
+</div>
+<div id="reloadbutton">
+    <a href="/{{return_url}}" style="hidden">RELOAD</a>
+</div>
+<a href="/{{return_url}}" ref="next" id="nextlink" style="display:none;color:white">Reload</a>
+<script type="text/javascript" src="{{STATIC_URL}}js/spin.min.js"></script>
+{% endif %}
+{% endblock %}
