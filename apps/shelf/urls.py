@@ -7,11 +7,11 @@ urlpatterns = patterns(
         'apps.shelf.views.index.index',
         name='index'),
 
-    url('keyword',
+    url('^keyword$',
         'apps.shelf.views.keyword.index',
         name='keyword'),
 
-    url('idea',
+    url('^idea$',
         'apps.shelf.views.ideahelp.index',
         name='ideahelp'),
 
