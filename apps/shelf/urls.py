@@ -19,6 +19,10 @@ urlpatterns = patterns(
         'apps.shelf.views.book.to_amazon',
         name='amazon-redirect'),
 
+    url('^review$',
+        'apps.shelf.views.review.index',
+        name='review'),
+
     url('^api/books/random$',
         'apps.shelf.views.api.book_random_api',
         name='get_random_books_api')

@@ -85,6 +85,32 @@ class Book(models.Model):
         d['return_url'] = 'idea'
         return d
 
+    @classmethod
+    def return_has_review_dict(cls, page=0):
+        d = {
+            'kfirst': [],
+            'ksecond': [],
+            'kthird': [],
+            'kforth': [],
+            'autopage': True}
+
+        books = list(
+            Book.objects.all().exclude(
+                text=None).order_by('-created_at')[page * 20:(page + 1) * 20])
+        if Book.objects.all().exclude(text=None).count() < (page + 1) * 20:
+            d['autopage'] = False
+
+        for num, book in enumerate(books):
+            push_column = lambda x: num % 4 == x
+            if push_column(0):
+                d['kfirst'].append(book)
+            if push_column(1):
+                d['ksecond'].append(book)
+            elif push_column(2):
+                d['kthird'].append(book)
+            elif push_column(3):
+                d['kforth'].append(book)
+        return d 
 
 def _get_keyword(get_books=3, limit=5):
 
