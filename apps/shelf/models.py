@@ -40,7 +40,7 @@ class Book(models.Model):
     def return_books(cls, get=5, min_users=0, max_users=10000):
         return list(
             cls.objects.filter(
-                users__gt=min_users, users__lt=max_users).order_by('?')[:get])
+                users__lt=max_users, users__gt=min_users).order_by('?')[:get])
 
     @classmethod
     def return_page_dict(cls):
