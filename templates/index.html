@@ -93,9 +93,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
 </script>
 {% endblock %}
 
-{% load cache %}
 {% block contents %}
-{% cache 300 toppage_cache_{{page}} %}
 <div class="contentwrapper">
     <div class="content">
     <div class="books-favorite">    
@@ -144,5 +142,4 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
 </div>
 <a href="/{{return_url}}" ref="next" id="nextlink" style="display:hidden;color:white">Reload</a>
 <script type="text/javascript" src="{{STATIC_URL}}js/spin.min.js"></script>
-{% endcache %}
 {% endblock %}
