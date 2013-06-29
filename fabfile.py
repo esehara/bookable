@@ -23,6 +23,7 @@ def deploy():
 
 
 def supervisorctl():
-    sudo('pkill -f supervisord',shell=True)
-    sudo('pkill -f gunicorn', shell=True)
-    sudo('supervisord')
+    #sudo('pkill -f supervisord',shell=True)
+    #sudo('pkill -f gunicorn', shell=True)
+    #sudo('supervisord')
+    pass
