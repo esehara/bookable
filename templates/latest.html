@@ -95,7 +95,7 @@ zIndex: 2e9, // The z-index (defaults to 2000000000)
 
 {% load cache %}
 {% block contents %}
-{% cache 300 latest_cache %}
+{% cache 300 latest_cache_{{page}} %}
 <div class="contentwrapper">
     <div class="content">
     <div class="books-favorite">    
