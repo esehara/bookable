@@ -125,8 +125,12 @@ def _get_keyword(get_books=3, limit=5):
                 list(KeywordToBook.objects.filter(
                     keyword=self.keyword).order_by('?')[:get_books])]
     _d = {}
-    keywords = list(
-        Keyword.objects.filter(times__gt=limit).order_by('?')[:5])
+    if limit > 1:
+        keywords = list(
+            Keyword.objects.filter(times__gt=limit).order_by('?')[:5])
+    else:
+        keywords = list(
+            Keyword.objects.order_by('?')[:5])
 
     for tkey in ['kfirst', 'ksecond', 'kthird', 'kforth']:
         _d[tkey] = Wrapper(keywords.pop(0))
