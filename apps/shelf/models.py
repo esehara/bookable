@@ -16,7 +16,7 @@ class Book(models.Model):
     url = models.URLField(u'Amazonへのリンク先')
     image = models.URLField(u'書影へのリンク', null=True)
     detail = models.TextField(u'書誌詳細情報')
-    users = models.IntegerField(u'はてなブックマークユーザー数', null=True)
+    users = models.IntegerField(u'はてなブックマークユーザー数', null=True, db_index=True)
     is_mecab = models.BooleanField(u'Mecab解析', default=False)
     text = models.TextField(u'紹介文章', null=True)
     via = models.CharField('引用元', max_length=255)
