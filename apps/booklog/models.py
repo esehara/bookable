@@ -10,7 +10,7 @@ class BookLog(models.Model):
 
     book = models.ForeignKey('shelf.Book', verbose_name=u'書籍')
     created_at = models.DateTimeField(u'作成日時', auto_now_add=True)
-    updated_at = models.DateTimeField(u'更新日時', auto_now=True)
+    updated_at = models.DateTimeField(u'更新日時', auto_now=True, db_index=True)
 
     def __unicode__(self):
         return u"%s(%s)" % (self.book.title, self.updated_at)
