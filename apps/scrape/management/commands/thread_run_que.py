@@ -13,7 +13,6 @@ def amazon_process(my_que):
             sleep(1)
             continue
         current_que = my_que.pop(0)
-        print current_que
         try:
             amazon = AmazonLink(current_que)
             book = amazon.save()
