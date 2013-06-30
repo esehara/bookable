@@ -80,7 +80,7 @@ class Command(BaseCommand):
         else:
             thread_number = int(args[0]) 
         child_ques = [[] for i in range(thread_number)]
-        max_que = thread_number * 30
+        max_que = thread_number * 100
         main_que = list(ScrapeQue.objects.filter(
             is_done=False)[0:max_que])
         threads = generate_thread(child_ques)
@@ -93,3 +93,6 @@ class Command(BaseCommand):
             if len(main_que) < max_que / 2:
                 main_que += list(ScrapeQue.objects.filter(
                     is_done=False)[0:max_que / 2])
+
+            print "[Infomation][Main] Rest Que is %d ." % len(main_que)
+            sleep(5)
