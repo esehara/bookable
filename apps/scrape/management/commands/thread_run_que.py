@@ -24,12 +24,8 @@ def amazon_process(my_que):
                 previous_bookcount = wait_commit(book, bookcount, previous_bookcount)
         except IndexError:
             print "[Error] Index Error. %s is skip." % current_que
-            current_que.is_done = False
-            current_que.save()
         except IOError:
             print "[Error] IO Error. %s is skip." % current_que
-            current_que.is_done = False
-            current_que.save()
 
 
 def wait_commit(book, current, previous):
