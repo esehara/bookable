@@ -3,6 +3,7 @@ import threading
 from django.core.management.base import BaseCommand
 from apps.scrape.management.commands.simple_run_que import AmazonLink
 from apps.scrape.models import ScrapeQue
+from apps.shelf.models import Book
 from time import sleep
 
 
@@ -31,6 +32,7 @@ def amazon_process(my_que):
 
 def print_book(book):
     if book is not None:
+        print Book.objects.all().count(), u'冊目'
         print "[Infomation] %s %s" % (book.title, book.author)
     else:
         print "[Failed] cannot get book infomation."
