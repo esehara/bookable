@@ -13,7 +13,7 @@ class Book(models.Model):
     title = models.CharField(u'書名', max_length=255)
     author = models.CharField(u'著者', max_length=255)
     price = models.IntegerField(u'値段')
-    url = models.URLField(u'Amazonへのリンク先')
+    url = models.URLField(u'Amazonへのリンク先', db_index=True)
     image = models.URLField(u'書影へのリンク', null=True)
     detail = models.TextField(u'書誌詳細情報')
     users = models.IntegerField(u'はてなブックマークユーザー数', null=True, db_index=True)
