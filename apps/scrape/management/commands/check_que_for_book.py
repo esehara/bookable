@@ -25,6 +25,8 @@ class Command(BaseCommand):
         for que in ques:
             print "Check Que No. %d." % que.pk
             try:
-                Book.objects.get(url=que.url)
+                book = Book.objects.get(url=que.url)
+                book.url = book.url.replace('bookable052e-22/ref=nosim', '')
+                book.save()
             except Book.DoesNotExist:
                 check_another_url(que)
