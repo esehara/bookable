@@ -20,9 +20,13 @@ def amazon_process(my_que):
                 book.save()
                 print_book(book)
         except IndexError:
-            continue
+            print "[Error] Index Error. %s is skip." % current_que
+            current_que.is_done = False
+            current_que.save()
         except IOError:
-            continue
+            print "[Error] IO Error. %s is skip." % current_que
+            current_que.is_done = False
+            current_que.save()
 
 
 def print_book(book):
