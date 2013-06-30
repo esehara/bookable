@@ -36,8 +36,8 @@ def wait_commit(book, current, previous):
         print "[Information] Current: %d" % current
         print "[Information] Previous: %d" % previous
         sleep(2)
+        book.save()
         current = Book.objects.all().count()
-    book.save()
     return current
 
 
@@ -82,10 +82,10 @@ class Command(BaseCommand):
             thread_number = 3
         else:
             thread_number = int(args[0]) 
-        child_ques = [[] for i in range(thread_number)]
         max_que = thread_number * 100
         main_que = list(ScrapeQue.objects.filter(
             is_done=False)[0:max_que])
+        child_ques = [[] for i in range(thread_number)]
         threads = generate_thread(child_ques)
         run_thread(threads)
         while 1:
