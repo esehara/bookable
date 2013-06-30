@@ -91,6 +91,7 @@ class Command(BaseCommand):
                     que.append(main_que.pop(0))
 
             if len(main_que) < max_que / 2:
+                print "[Infomation][Main] Que is add."
                 main_que += list(ScrapeQue.objects.filter(
                     is_done=False)[0:max_que / 2])
 
