@@ -32,7 +32,10 @@ def wait_commit(book, current, previous):
     while 1:
         if current != previous:
             break
-        sleep(1)
+        print "[Information][Child] Wait commit book about %s." % book
+        print "[Information] Current: %d" % current
+        print "[Information] Previous: %d" % previous
+        sleep(2)
         current = Book.objects.all().count()
     book.save()
     return current
@@ -91,9 +94,9 @@ class Command(BaseCommand):
                     que.append(main_que.pop(0))
 
             if len(main_que) < max_que / 2:
-                print "[Infomation][Main] Que is add."
+                print "[Information][Main] Que is add."
                 main_que += list(ScrapeQue.objects.filter(
                     is_done=False)[0:max_que / 2])
 
-            print "[Infomation][Main] Rest Que is %d ." % len(main_que)
+            print "[Information][Main] Rest Que is %d ." % len(main_que)
             sleep(5)
