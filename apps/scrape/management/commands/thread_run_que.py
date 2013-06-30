@@ -8,6 +8,7 @@ from time import sleep
 
 
 def amazon_process(my_que):
+    previous_bookcount = 0
     while 1:
         if len(my_que) == 0:
             "[Thread] Wait Job..."
@@ -19,7 +20,8 @@ def amazon_process(my_que):
             book = amazon.save()
             if book is not None:
                 book.save()
-                print_book(book)
+                bookcount = print_book(book)
+                previous_bookcount = wait_commit(book, bookcount, previous_bookcount)
         except IndexError:
             print "[Error] Index Error. %s is skip." % current_que
             current_que.is_done = False
@@ -30,13 +32,26 @@ def amazon_process(my_que):
             current_que.save()
 
 
+def wait_commit(book, current, previous):
+    while 1:
+        if current != previous:
+            break
+        sleep(1)
+        current = Book.objects.all().count()
+    book.save()
+    return current
+
+
 def print_book(book):
     if book is not None:
-        print Book.objects.all().count(), u'冊目'
+        bookcount = Book.objects.all().count()
+        print bookcount, u'冊目'
         print "[Infomation] %s %s" % (book.title, book.author)
     else:
         print "[Failed] cannot get book infomation."
     print
+
+    return bookcount
 
 
 def generate_thread(
