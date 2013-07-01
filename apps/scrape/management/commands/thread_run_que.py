@@ -39,7 +39,7 @@ def wait_commit(book, current, previous):
         print "[Information][Child] Wait commit book about %s." % book
         print "[Information] Current: %d" % current
         print "[Information] Previous: %d" % previous
-        sleep(2)
+        sleep(60)
         book.save()
         current = Book.objects.all().count()
     return current
