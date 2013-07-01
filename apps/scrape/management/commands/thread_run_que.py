@@ -117,6 +117,6 @@ class Command(BaseCommand):
                 threads = generate_thread(child_ques)
                 killall = False
                 run_thread(threads)
-            elif kill_counter > 0:
+            elif kill_counter > 0 and current_bookcount != previous_bookcount:
                 kill_counter = 0
             previous_bookcount = current_bookcount
