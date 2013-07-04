@@ -157,10 +157,16 @@ class Keyword(models.Model):
     text = models.TextField(u'解説', null=True, blank=True)
     created_at = models.DateTimeField(u'作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(u'更新日時', auto_now=True)
+    for_random = models.FloatField(
+        u'ランダム用', null=True, unique=True, db_index=True)
 
     def __unicode__(self):
         return u"%s" % self.name
- 
+
+    def set_for_random(self):
+        self.for_random = random.random()
+        self.save()
+
     @classmethod
     def return_keyword_dict(cls):
         d = {
