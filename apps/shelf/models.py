@@ -74,7 +74,14 @@ class Book(models.Model):
                 min_users=min_users,
                 max_users=max_users,
                 add_query=add_query)
-            return_books += add_books
+            is_same_book = False
+            for check_book in return_books:
+                if check_book == add_books[0]:
+                    is_same_book = True
+                    break
+
+            if not is_same_book:
+                return_books += add_books
         return return_books
 
     @classmethod
