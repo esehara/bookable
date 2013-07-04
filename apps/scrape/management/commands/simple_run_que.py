@@ -89,6 +89,7 @@ class AmazonLink(object):
                 via=u'はてなブックマーク')
         self._que.is_done = True
         self._que.save()
+        book.set_for_random()
         return book
 
 

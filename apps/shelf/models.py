@@ -45,20 +45,56 @@ class Book(models.Model):
         return link
 
     @classmethod
-    def return_books(cls, get=5, min_users=0, max_users=10000):
-        return list(
-            cls.objects.filter(
-                users__lt=max_users, users__gt=min_users).order_by('?')[:get])
+    def get_random_one(cls, min_users=0, max_users=1000, add_query=None):
+
+        def get_query(add_query=None):
+            lt_number = (
+                min_users +
+                random.randint(0, max_users) +
+                random.random())
+            return_query = cls.objects.filter(
+                for_random__gt=lt_number)
+            if add_query is not None:
+                return_query = return_query.add_query()
+            return return_query[:1]
+
+        queryset = get_query()
+        while len(queryset) == 0:
+            queryset = get_query()
+
+        return_book = list(queryset)
+
+        return return_book
+
+    @classmethod
+    def get_random_n(cls, get=5, min_users=0, max_users=1000, add_query=None):
+        return_books = []
+        while len(return_books) < get:
+            add_books = cls.get_random_one(
+                min_users=min_users,
+                max_users=max_users,
+                add_query=add_query)
+            return_books += add_books
+        return return_books
+
+    @classmethod
+    def return_books(cls, get=5, min_users=0, max_users=1000):
+        return  cls.get_random_n(
+            get=get,
+            min_users=min_users,
+            max_users=max_users)
 
     @classmethod
     def return_page_dict(cls):
         d = {}
-        d['favorite_books'] = list(cls.objects.filter(users__gt=25).order_by('?')[:5])
+        d['favorite_books'] = Book.return_books(
+            min_users=25)
         d['normal_books'] = Book.return_books(
             min_users=10, max_users=25)
         d['hot_books'] = Book.return_books(
             min_users=5, max_users=10)
-        d['newbee_books'] = list(cls.objects.filter(users__lt=5).order_by('?')[:5])
+        d['newbee_books'] = Book.return_books(
+            max_users=5)
         return d
 
     @classmethod
@@ -131,7 +167,7 @@ def _get_keyword(get_books=3, limit=5):
             self.books = [
                 i.book for i in
                 list(KeywordToBook.objects.filter(
-                    keyword=self.keyword).order_by('?')[:get_books])]
+                    book=self.keyword).order_by('?')[:get_books])]
     _d = {}
     if limit > 1:
         keywords = list(
@@ -189,7 +225,7 @@ class Keyword(models.Model):
                 d['kthird'].append(keyword)
             elif push_column(3):
                 d['kforth'].append(keyword)
-        return d 
+        return d
 
     @classmethod
     def return_page_search_dict(cls, page=0, keyword=None):
@@ -231,6 +267,7 @@ class Keyword(models.Model):
             elif push_column(3):
                 d['kforth'].append(ktb.book)
         return d
+
 
 class KeywordToBook(models.Model):
 
