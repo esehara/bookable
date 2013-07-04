@@ -4,6 +4,8 @@ from django.core.serializers import serialize
 from django.conf import settings
 import random
 
+MAX_USER = 200
+
 
 class Book(models.Model):
 
@@ -45,7 +47,7 @@ class Book(models.Model):
         return link
 
     @classmethod
-    def get_random_one(cls, min_users=0, max_users=600, add_query=None):
+    def get_random_one(cls, min_users=0, max_users=MAX_USER, add_query=None):
 
         def get_query(add_query=None):
             lt_number = (
@@ -67,7 +69,7 @@ class Book(models.Model):
         return return_book
 
     @classmethod
-    def get_random_n(cls, get=5, min_users=0, max_users=600, add_query=None):
+    def get_random_n(cls, get=5, min_users=0, max_users=MAX_USER, add_query=None):
         return_books = []
         while len(return_books) < get:
             add_books = cls.get_random_one(
@@ -85,7 +87,7 @@ class Book(models.Model):
         return return_books
 
     @classmethod
-    def return_books(cls, get=5, min_users=0, max_users=600):
+    def return_books(cls, get=5, min_users=0, max_users=MAX_USER):
         return  cls.get_random_n(
             get=get,
             min_users=min_users,
