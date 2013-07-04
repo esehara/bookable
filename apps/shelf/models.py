@@ -2,13 +2,13 @@
 from django.db import models
 from django.core.serializers import serialize
 from django.conf import settings
+import random
 
 
 class Book(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = u"書誌情報"
-        ordering = ['-click']
 
     title = models.CharField(u'書名', max_length=255)
     author = models.CharField(u'著者', max_length=255)
