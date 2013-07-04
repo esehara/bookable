@@ -13,10 +13,18 @@ class Migration(SchemaMigration):
                       self.gf('django.db.models.fields.FloatField')(unique=True, null=True, db_index=True),
                       keep_default=False)
 
+        # Adding field 'Book.for_random'
+        db.add_column(u'shelf_book', 'for_random',
+                      self.gf('django.db.models.fields.DecimalField')(unique=True, null=True, max_digits=32, decimal_places=20, db_index=True),
+                      keep_default=False)
+
 
     def backwards(self, orm):
         # Deleting field 'Keyword.for_random'
         db.delete_column(u'shelf_keyword', 'for_random')
+
+        # Deleting field 'Book.for_random'
+        db.delete_column(u'shelf_book', 'for_random')
 
 
     models = {
