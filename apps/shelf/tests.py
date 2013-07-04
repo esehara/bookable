@@ -192,3 +192,13 @@ class BookModelTest(TestCase):
         self.assertEqual(
             u'http://b.hatena.ne.jp/entry/www.amazon.co.jp/gp/product/4140814047/',
             self.book.link_to_hatenabookmark())
+
+    def test_random_one(self):
+        self.book.set_for_random()
+        books = Book.get_random_one()
+        self.assertEqual(len(books), 1)
+
+    def test_random_n(self):
+        self.book.set_for_random()
+        books = Book.get_random_n(5)
+        self.assertEqual(len(books), 5)

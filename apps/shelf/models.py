@@ -21,8 +21,16 @@ class Book(models.Model):
     text = models.TextField(u'紹介文章', null=True)
     via = models.CharField('引用元', max_length=255)
     click = models.IntegerField(u'クリック数', default=0)
+    for_random = models.DecimalField(
+        u'ランダム用整数',
+        max_digits=32, decimal_places=20,
+        unique=True, null=True, db_index=True)
     created_at = models.DateTimeField(u'作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(u'更新日時', auto_now=True)
+
+    def set_for_random(self):
+        self.for_random = float(self.users or 0) + random.random()
+        self.save()
 
     def __unicode__(self):
         return u"%s %s" % (self.title, self.author)
