@@ -12,6 +12,7 @@ def index(request):
     d['return_url'] = "search?" + urlencode(
         [('page', int(page) + 1)]) + "&" + urlencode(
             [('query', keyword)])
+    d['subtitle'] = u'キーワード:' + keyword
     return render(
         request,
         'search.html',
